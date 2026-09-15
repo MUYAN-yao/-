@@ -1,0 +1,11 @@
+{
+  "all_packaged_file_hashes_match": true,
+  "packaged_files_excluding_manifest": 185,
+  "full_replay_from_unrelated_extracted_directory": true,
+  "all_scientific_values_and_decisions_match": true,
+  "scientific_inputs_unchanged_after_run": true,
+  "tampered_input_refused": true,
+  "value_decision_and_schema_drift_detected": true,
+  "reader_pdf_pages": 23,
+  "reader_pdf_has_text_on_every_page_and_no_machine_local_link_actions": true
+}

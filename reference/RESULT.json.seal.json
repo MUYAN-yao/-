@@ -1,0 +1,13 @@
+{
+  "candidate_family": [
+    "resnet18_normal_diagonal",
+    "resnet18_temporal_novelty",
+    "pixel_frame_difference"
+  ],
+  "cil_gate_passed": true,
+  "decision": "paper_promotion_gate_passed",
+  "paper_promotion_gate_passed": true,
+  "result": "RESULT.json",
+  "result_sha256": "041436e4df223c0a4edaf4827c488efacb2124bda42130317815e77f49143c2c",
+  "scope": "iitb_corridor_prospective_cil_v1"
+}

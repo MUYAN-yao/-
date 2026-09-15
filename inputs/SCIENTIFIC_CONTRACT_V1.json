@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "scope": "iitb_corridor_prospective_cil_v1",
+  "locked": true,
+  "locked_at": "2026-08-24T00:00:00+08:00",
+  "evidence_class_if_all_gates_pass": "independent_one_shot_real_surveillance_confirmation",
+  "dataset": "IITB Corridor",
+  "official_page": "https://rodrigues-royston.github.io/Multi-timescale_Trajectory_Prediction/",
+  "paper": "https://openaccess.thecvf.com/content_WACV_2020/papers/Rodrigues_Multi-timescale_Trajectory_Prediction_for_Abnormal_Human_Activity_Detection_WACV_2020_paper.pdf",
+  "expected_train_videos": 208,
+  "expected_test_videos": 150,
+  "minimum_donor_videos": 100,
+  "minimum_evaluable_targets": 60,
+  "candidate_family": [
+    {
+      "name": "resnet18_normal_diagonal",
+      "backbone": "torchvision_resnet18_imagenet1k_v1",
+      "train_frames_per_video": 16,
+      "test_embedding_stride": 4,
+      "score": "mean_squared_diagonal_standardized_distance_to_normal_train_embedding_mean",
+      "orientation": "higher_is_more_anomalous"
+    },
+    {
+      "name": "resnet18_temporal_novelty",
+      "backbone": "torchvision_resnet18_imagenet1k_v1",
+      "test_embedding_stride": 4,
+      "score": "one_minus_cosine_similarity_to_previous_sampled_frame_then_linear_interpolation",
+      "orientation": "higher_is_more_anomalous"
+    },
+    {
+      "name": "pixel_frame_difference",
+      "score": "native_frame_mean_absolute_grayscale_difference_divided_by_255",
+      "orientation": "higher_is_more_anomalous"
+    }
+  ],
+  "candidate_changes_after_lock": "prohibited",
+  "sentinels": [
+    "sentinel_center_prior",
+    "sentinel_duration_center",
+    "sentinel_linear_progress",
+    "sentinel_sampling_grid"
+  ],
+  "donor_raw_shifts": [7, 19, 31, 43, 59, 73, 91, 109],
+  "within_video_transform": "tie_aware_rank_percentile",
+  "donor_alignment": "linear_interpolation_on_normalized_progress",
+  "bootstrap_draws": 10000,
+  "bootstrap_seed": 24082026,
+  "strata": 5,
+  "identity_floor": 0.02,
+  "margin_floor": 0.015,
+  "require_individual_ci_lower_positive": true,
+  "require_simultaneous_one_sided_lower_positive": true,
+  "require_nonnegative_strata": "at_least_4_of_5_for_identity_and_margin",
+  "report_all_candidates": true,
+  "ordinary_utility": {
+    "primary": "raw_global_frame_auc_and_ap",
+    "no_test_selected_orientation": true,
+    "paper_promotion_auc_floor": 0.60,
+    "paper_promotion_ap_above_prevalence": 0.05
+  },
+  "prediction_replay": "byte_identical_required",
+  "prohibited": [
+    "test_label_access_before_prediction_seals",
+    "score_inversion_after_labels",
+    "smoothing_or_fusion_after_labels",
+    "candidate_deletion_or_addition_after_labels",
+    "threshold_or_seed_change_after_labels",
+    "suppression_of_negative_candidates"
+  ]
+}

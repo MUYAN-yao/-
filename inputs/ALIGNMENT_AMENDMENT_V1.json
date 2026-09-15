@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "scope": "iitb_corridor_outcome_blind_alignment_amendment_v1",
+  "locked": true,
+  "reason_for_amendment": "The author-supplied annotation arrays are structurally one element shorter than the decoded AVI streams for every test video.",
+  "discovered_after_label_vault_open": true,
+  "discovered_before_any_metric_computation": true,
+  "failed_attempt_consumed_metrics": false,
+  "structural_audit": {
+    "test_videos": 150,
+    "videos_with_label_length_equal_decoded_frames_minus_one": 150,
+    "other_length_relations": 0,
+    "labels_binary": true
+  },
+  "frozen_rule": "drop_score_frame_zero_then_require_exact_label_length",
+  "rule_applies_to": "all three candidates and all sentinels without exception",
+  "justification": "The temporal-novelty and frame-difference candidates are transition-defined and set score frame zero to an artificial zero because no preceding frame exists. Dropping this undefined leading score is the unique pre-metric transition alignment; dropping the last score, padding labels, or comparing alternatives is prohibited.",
+  "prohibited": [
+    "evaluate_drop_last_alignment",
+    "choose_alignment_by_auc_ap_tia_or_cnm",
+    "pad_or_interpolate_labels",
+    "candidate_specific_alignment",
+    "change_any_candidate_curve_value_other_than_removing_index_zero"
+  ],
+  "prediction_sha256": "ef72f5b328b58c51bd75e9f80dfaac0fea5872af82a6f2ba39794139a5841cc6",
+  "label_manifest_sha256": "38b674cdfc5e7ff673403886cff4a63f44f9dca9295340a9071c8384901898ce",
+  "scientific_contract_sha256": "e9f7b367f15491ed6df2bd17be2b53d148c5ce29ae4998f9b9f0edc449c8adbc",
+  "metrics_computed_at_lock": 0
+}

@@ -1,0 +1,755 @@
+{
+  "package": "CIL student research pack",
+  "version": "2026-09-09",
+  "created_utc": "2026-09-09T02:49:11.868202+00:00",
+  "purpose": "Private educational replay, not new independent confirmation",
+  "excluded": [
+    "raw videos",
+    "weights",
+    "credentials",
+    "student outputs",
+    "Python runtime"
+  ],
+  "files": {
+    "assets/cil_main_results.csv": {
+      "bytes": 672,
+      "sha256": "7574595e39f656bef288de555d62ce7146532cd74db5461bc2b92770c703af43"
+    },
+    "assets/cil_main_results.png": {
+      "bytes": 149381,
+      "sha256": "33d1a70d1e16bbfdd087589b07e954bc9920b5be91fc224c60557fac4569493b"
+    },
+    "assets/cil_ownership_control.csv": {
+      "bytes": 390,
+      "sha256": "58e1a390fe9da8a09848a767add9e858a68c41eacb5c7c69651bf1876b791c20"
+    },
+    "assets/cil_ownership_control.png": {
+      "bytes": 65085,
+      "sha256": "b5bea3b466d705c451f2524ebf3ca754f757adcb4ada52373fce747548ac9485"
+    },
+    "assets/cil_protocol.png": {
+      "bytes": 385323,
+      "sha256": "e090a3250059846ea16500025a652817316f5476121e210c0faab4edebbf67de"
+    },
+    "assets/iitb_pipeline.png": {
+      "bytes": 292833,
+      "sha256": "a07722ec4bb05f031522939470219723a7e6dd56d4ef0760f56ed8b84882dcf3"
+    },
+    "DATA_NOTICE.md": {
+      "bytes": 2253,
+      "sha256": "f825fa7ed4700c25eede68875712dae635d8eb0ad0dcf0839a7eb624827adf07"
+    },
+    "guide.md": {
+      "bytes": 12465,
+      "sha256": "cca1fbbc4252c6bd0a66341f215a5de8b7088b35ba195e584d611128241db737"
+    },
+    "index.html": {
+      "bytes": 55237,
+      "sha256": "a545af8f6d9c914c2bc11810981a84e9099f2a8af85b2045bad92d3ad5a679b6"
+    },
+    "inputs/ALIGNMENT_AMENDMENT_V1.json": {
+      "bytes": 1649,
+      "sha256": "60ec9169fcc1523b639d43b7581e0bb5179b83493a822a152bbd2a9741c6c247"
+    },
+    "inputs/LABEL_VAULT_OPEN_RECEIPT.json": {
+      "bytes": 31195,
+      "sha256": "cff807e6f38015c3680006111ae82ef791e509aa6c9b5bd819cd6bc29252f16c"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000209/000209.npy": {
+      "bytes": 4456,
+      "sha256": "b54f8187d6579254f47a7fe381dff0f3e4a9af7471b2122cfa8b7c071b20ef39"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000210/000210.npy": {
+      "bytes": 1960,
+      "sha256": "fee8a52994a138ab8f044066527e83fc1ca780696d209898a1f265904d142e7d"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000211/000211.npy": {
+      "bytes": 11488,
+      "sha256": "27f50fa8724a419d4109d547794b4144674e6a1ee087094a4737b74b9f0789d9"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000212/000212.npy": {
+      "bytes": 3672,
+      "sha256": "ff97fc391e0e8b37bce9556b44fc7df967e91cf0efaf914c7681348bdace7900"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000213/000213.npy": {
+      "bytes": 12616,
+      "sha256": "d9599043cee63c8b505c026a28bf52076a2195c649d6fede6230ac57adb34051"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000214/000214.npy": {
+      "bytes": 3136,
+      "sha256": "8ae6ef5e9e6e658b9bed93cf1e4dc98a5d1138c8d2368a6afb0f94555efe6f5a"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000215/000215.npy": {
+      "bytes": 4472,
+      "sha256": "9b8e4e4846fadc944788ba41682619d2a97ec89f9a2e1d13f409c249bc94ad18"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000216/000216.npy": {
+      "bytes": 16448,
+      "sha256": "54bca18ac5aedfbb7578ca8ed5b937f02d70549ffb5ab97605688ed954ed8183"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000217/000217.npy": {
+      "bytes": 5520,
+      "sha256": "b752fa47adcbd51aeff2933df2c8b811ae688d388a0f0bc7b46fe838b97281ee"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000218/000218.npy": {
+      "bytes": 4208,
+      "sha256": "b7fa9f2e3045e2c47e97f5e2b0055ca5993c8481bd81e0f412e62aad91edb376"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000219/000219.npy": {
+      "bytes": 5112,
+      "sha256": "95b0e479db410a9edff745915e3ea4c246a06a1978db040693f428ab837e25ed"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000220/000220.npy": {
+      "bytes": 6744,
+      "sha256": "80b83ff46bfd2ad9f42367854afea1df174f8daf4809d1b2415cc0b6e8ea6781"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000221/000221.npy": {
+      "bytes": 25496,
+      "sha256": "3f5df0bc8825bba9cd0b540d5d5446e76ceee86dddb79e7fbd2be9f677483497"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000222/000222.npy": {
+      "bytes": 8256,
+      "sha256": "5fdef0022321cb39426777fa39d830f7445d7fa114e5e57d4ff0b8564b3be86b"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000223/000223.npy": {
+      "bytes": 14352,
+      "sha256": "b396704093a974dd175cd95b97a02d8385359b4eb5347ee44838fd0b50b05831"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000224/000224.npy": {
+      "bytes": 5176,
+      "sha256": "e604a335328b716cbb81da100e009131ff98e6fb7186a7691ac839b656cafc69"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000225/000225.npy": {
+      "bytes": 6768,
+      "sha256": "cefa3e54b46181fbf16b2274195269a1e754abf2532b83fa2f74b5f4c7ac171f"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000226/000226.npy": {
+      "bytes": 6872,
+      "sha256": "54f7de61bd89c9c49d6a32ec78689da905f90c53e5b55ebc04d421b21dfd1abe"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000227/000227.npy": {
+      "bytes": 3360,
+      "sha256": "f2bec32d9563b00659628d2a780ecc47b37f3b4152c4badf708b08b4e5db2f36"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000228/000228.npy": {
+      "bytes": 3472,
+      "sha256": "58e0d6f7f182bf8dd29af216b03d9b3cf869925db49dbfa24b4a6fe448430c73"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000229/000229.npy": {
+      "bytes": 8776,
+      "sha256": "01fbef86296cf9485f41e3923b3b4ac50f4b0fe45d71408e1257c93dc6eea738"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000230/000230.npy": {
+      "bytes": 5136,
+      "sha256": "91f6cf4f62ee5429a81c9059b5ba73d971922f9afdb7ef8a373c30465f56449d"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000231/000231.npy": {
+      "bytes": 4400,
+      "sha256": "bdb3c269305cd7810057b55469725e42bbb9524d2022582857f3eaba1e9b20c3"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000232/000232.npy": {
+      "bytes": 21160,
+      "sha256": "ba91a944d9095fb2fef8426999aedbea7b12059ec9b6c456f0bc240c3e4519bc"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000233/000233.npy": {
+      "bytes": 7232,
+      "sha256": "59e0885c3f02bf03b1543c2e9990aef9bbcb0236eb10084099d4e4ac39d91bd2"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000234/000234.npy": {
+      "bytes": 4280,
+      "sha256": "6ca587732aa4713e342a72e9570259ad1f12daca3b061b26b4f8bf2158e3c00a"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000235/000235.npy": {
+      "bytes": 1680,
+      "sha256": "da56a38f506c51b8c5a7080be34af46948b7707066c2b32271f0042fa6ea66b1"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000236/000236.npy": {
+      "bytes": 10472,
+      "sha256": "37cdd63656bb81915e172e37282f9e1e11795d841a94040f7c47c87d70fe02a2"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000237/000237.npy": {
+      "bytes": 12008,
+      "sha256": "76d0f40b0675ba7533b6f5712ee5be7f1e273379e096f0115e35d08b75e41a70"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000238/000238.npy": {
+      "bytes": 832,
+      "sha256": "1e014b913c8504328409abae1b2a3b157600752807144d9a98dd69a9e9a161c4"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000239/000239.npy": {
+      "bytes": 52784,
+      "sha256": "0d3b04f51b2df2bf1a7dcf1d1f89ff91d5f686ae924d0546d865aede05d0d5c9"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000240/000240.npy": {
+      "bytes": 16264,
+      "sha256": "5df6d50137aadef0c11c84a4e90424908fb3a6783368fe55eb8cb909cbd8ded7"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000241/000241.npy": {
+      "bytes": 23112,
+      "sha256": "7dd9712306061168f53bd25bc24e3cca11f678b54f953ec868ccdf83baac5b83"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000242/000242.npy": {
+      "bytes": 11808,
+      "sha256": "86a031e6cccfe5896ee5c8f671229dcdf2c3b3ff0be100c36b89483b008aea2d"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000243/000243.npy": {
+      "bytes": 7672,
+      "sha256": "5add8cb687ad28f821ed41d351b40ac029b35d8549c95bc0f03ff9b6315c0857"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000244/000244.npy": {
+      "bytes": 3312,
+      "sha256": "7fb1e5a16cb233f4d4d34fe77942a3c3a7544997f8a88d2d4b61111bca3fcc2b"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000245/000245.npy": {
+      "bytes": 7576,
+      "sha256": "562f07663159280b392b51fffd5af01751a833727793a86694ca7b4a722b8ea1"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000246/000246.npy": {
+      "bytes": 17792,
+      "sha256": "6dd2338a4ee0e64ab1702891ceae3c15b6dadba906b2cff8399c0f5dd6b839c5"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000247/000247.npy": {
+      "bytes": 4472,
+      "sha256": "7665e5af066c8471ef93e04e6a59112f484ebab40b0899074a225de0bf76eccf"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000248/000248.npy": {
+      "bytes": 7216,
+      "sha256": "3788e8d857ba4cb305001536626b1fecc8937a3073eb3e70a09b3c7390cd4292"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000249/000249.npy": {
+      "bytes": 3840,
+      "sha256": "45968f069c45886c2348e131f189d2d9f09fbafb0174b2a43b0396b4c1b6074f"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000250/000250.npy": {
+      "bytes": 6736,
+      "sha256": "a5d7b3a35187a0238eb1599f962507dd1cf957f81af1428942a8399c5f39aa05"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000251/000251.npy": {
+      "bytes": 12232,
+      "sha256": "03a927c36be0ab4899f866d3397c3cb98290d534a77160e100504867f0d5a63c"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000252/000252.npy": {
+      "bytes": 7072,
+      "sha256": "96dbd7e08e56c9a24a5b26c91271614c050ce81592b6e5a665940e21b57cd2f3"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000253/000253.npy": {
+      "bytes": 5880,
+      "sha256": "adbac56d77df0a55a5b249fd0482c138300bf4ca81dc99dd28c0612bbf61ad34"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000254/000254.npy": {
+      "bytes": 27064,
+      "sha256": "b1fc14deb47c79e4ee94d2336e8d31b3485eb083c41236213cfdccdc10f08496"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000255/000255.npy": {
+      "bytes": 18544,
+      "sha256": "d186d56081e807c75057d64b548600fc0af189e43a835ec9d685333886c4974e"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000256/000256.npy": {
+      "bytes": 26784,
+      "sha256": "d05082197889fe33d37a6d487df1e73f2bde7af493ceecfd6fd8e4348bf8662c"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000257/000257.npy": {
+      "bytes": 7336,
+      "sha256": "f47044219f6c0cebf172775a3f25456d423492f6b3b3a65b8a4e2db3ec78e1b4"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000258/000258.npy": {
+      "bytes": 18072,
+      "sha256": "03ac80b2e1986c34759e037c328c35da2179265c01864edb940554cf556f505b"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000259/000259.npy": {
+      "bytes": 5024,
+      "sha256": "bc59bacebc0bd6fd00788bc3ff129cf3fff5a708de0a6728d5632dfa5e6a0033"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000260/000260.npy": {
+      "bytes": 3232,
+      "sha256": "add5110f8198092f0e120bf59584b804aa38e0c95991759e6139486eb0885e36"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000261/000261.npy": {
+      "bytes": 2632,
+      "sha256": "03e9d47586974ab4a34c43b849f32d0c070f21f940731306de38613ee9ca1171"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000262/000262.npy": {
+      "bytes": 9176,
+      "sha256": "2dc6155a2946a7ea4a05fe92d09203ad5e395f4249c8b4e34de69a72312f5cf7"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000263/000263.npy": {
+      "bytes": 21040,
+      "sha256": "b0346f3bd64b05cd86874025b4214d3da3955819bca81ae2d44b8aef3fa621e3"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000264/000264.npy": {
+      "bytes": 4600,
+      "sha256": "648cd92ab15f469675781e1adaaf2c7b0370cd1434905edb9f4acf23a8f2a3b0"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000265/000265.npy": {
+      "bytes": 10168,
+      "sha256": "2165c032423eda8df5bab0f577da4e8bd00dbfb618e780c8bd006d8615d555d5"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000266/000266.npy": {
+      "bytes": 10936,
+      "sha256": "6dd3c0e8417d7100c173bee818350f15fe675cda0aeb80b0a9b9c85a22a3653e"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000267/000267.npy": {
+      "bytes": 6336,
+      "sha256": "16916ef65b127ba5301b3c2e9c2186f57d6f53d74dc1fa097de8108a4c195d05"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000268/000268.npy": {
+      "bytes": 6000,
+      "sha256": "c05edbfdef58b787e1c95e4b121daf05eeb59243a75ae7ce730e2ce80ba3f418"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000269/000269.npy": {
+      "bytes": 4296,
+      "sha256": "43581a74390f99ce970af021a96afed675b90618391fcb7fc86c4133e52dc545"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000270/000270.npy": {
+      "bytes": 5232,
+      "sha256": "04a97a99655d15a88c3866bb052f4eacb491ef0edee39ac6ab8ee37b3d3fe159"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000271/000271.npy": {
+      "bytes": 12528,
+      "sha256": "b001ab43acc6eda5388b45e6dd1e45407ac9970ac414c4c17244e1735c9a5f94"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000272/000272.npy": {
+      "bytes": 3136,
+      "sha256": "57d296ce062ce2af791043d83058b4fc249245dfa84e05572cb9ed48f667bdf0"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000273/000273.npy": {
+      "bytes": 10640,
+      "sha256": "f1d764b3167aa9c73f6d56586a3276e5951ef123b55fa80c8c8eaa0fc37ff353"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000274/000274.npy": {
+      "bytes": 4976,
+      "sha256": "03cf2170e18e64e80f6cbcbb4e785c05570ab2b36fe75f27f231325cd96f2070"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000275/000275.npy": {
+      "bytes": 5408,
+      "sha256": "474089a7f3401d6bb8b5c5ed72e2300a57cc253e52749c7238fc431fa232f34e"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000276/000276.npy": {
+      "bytes": 8288,
+      "sha256": "a2db4eaa96093fad38855786f401fc7e83b135c8dbb36663d78f0271dd4eff77"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000277/000277.npy": {
+      "bytes": 20472,
+      "sha256": "bf2f5eccebfbb7b32d10b9aac1a652110a0eb9d408f35faafbf1d2aa3049fce1"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000278/000278.npy": {
+      "bytes": 4976,
+      "sha256": "c01ef2e8fc7913157c38fbdb4fcaf4668967ac9424fc46c57caa3a6d1d5bf557"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000279/000279.npy": {
+      "bytes": 8744,
+      "sha256": "449b0bee09c58e58c948966962fbfe81c5203253f1f0cd8ae35330042af100fe"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000280/000280.npy": {
+      "bytes": 7224,
+      "sha256": "d390c88a88ef69f624aaf9283eed39110ae0021fac1f631070f143b269fb6877"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000281/000281.npy": {
+      "bytes": 4376,
+      "sha256": "394f7aeb03bb408556ed6b20a098a05a0fdbe00934cea30237fd2377a92a8b67"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000282/000282.npy": {
+      "bytes": 3656,
+      "sha256": "b750c18aba4c2eb004bb8c1e5f45486dd2f5427437c06e4d8441533f8be9f02c"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000283/000283.npy": {
+      "bytes": 21744,
+      "sha256": "710e437b69d4c87095de888c2b8858fa51e5f25fb1e0f3a666ca4f006d15d83e"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000284/000284.npy": {
+      "bytes": 16952,
+      "sha256": "481f53f1694f37a840ab148965dea98d94295aa4e47d1e802c3b92f096ef4fce"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000285/000285.npy": {
+      "bytes": 4744,
+      "sha256": "654e525ab0705a11023f60dd1a11bf98ad60538d9914ce0ad53ccbf13a18aa14"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000286/000286.npy": {
+      "bytes": 7272,
+      "sha256": "72630a0e38acffd59684f6304899705dfdfc15f225de2525252d9f9b5473e77c"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000287/000287.npy": {
+      "bytes": 8952,
+      "sha256": "a428be42d4eda53b59f958ae6014974e765d63b3847962af3203ca782423057f"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000288/000288.npy": {
+      "bytes": 8608,
+      "sha256": "428f369546d75a61422f4925615d3594ba9e4ae77677961465a6ab5a4f61b8b3"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000289/000289.npy": {
+      "bytes": 10064,
+      "sha256": "4c8aaccab6b4004cbbf7202b14b7fa86ba38dc7e0dc66abb4ba767d10c7ee170"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000290/000290.npy": {
+      "bytes": 5400,
+      "sha256": "df64761c52eadd18c4788156efa3dbacbd40b608a1461caf73129eee55f8c26b"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000291/000291.npy": {
+      "bytes": 37728,
+      "sha256": "c87d42ff4a3b04e0e2f629c0d74635789b7f3746d7be5345065114fb1ffdc443"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000292/000292.npy": {
+      "bytes": 20632,
+      "sha256": "c1025397c85965c940d4e6c4fd20eab9b75041f8f78c595fe69ad43f82723f77"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000293/000293.npy": {
+      "bytes": 5872,
+      "sha256": "be05fac7551c7718a871300ca8a3ed10745fce379643e2bae2c4192c9e546d9f"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000294/000294.npy": {
+      "bytes": 4608,
+      "sha256": "b34091e37920cea24908409b583a524cbc0cc1be06a81ab2ab2c522f71b333f4"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000295/000295.npy": {
+      "bytes": 7528,
+      "sha256": "b1de0c8e34367e563531422dd0d9446c973c4495933c3256eb8ff95024482eda"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000296/000296.npy": {
+      "bytes": 7720,
+      "sha256": "203e340edb0e127f0264c5f12063151a49b4a02e9ca2c311e3e22431bc5752d3"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000297/000297.npy": {
+      "bytes": 2928,
+      "sha256": "0716866a738324a5192c2c53a9abeac261cfa8ddb4e830af05a849166e8e6c51"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000298/000298.npy": {
+      "bytes": 9288,
+      "sha256": "cf7d7017f477ff23cac5b0810f1cd0216306eba329b2e73562dae0d0fb0337cf"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000299/000299.npy": {
+      "bytes": 60824,
+      "sha256": "f7568b23e0c3dfa954d068995294f1c0a35eeac2e8cb09eb4a9786e88fbd2caa"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000300/000300.npy": {
+      "bytes": 5264,
+      "sha256": "f5eaa8073e9acd8e82d09e3974db7581e4d7ee2f281ce310488a3ecf227a0878"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000301/000301.npy": {
+      "bytes": 25872,
+      "sha256": "271b444faa85260eee66518d3a3b6e71d09023c642e489596aa83a0d3af4b585"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000302/000302.npy": {
+      "bytes": 5784,
+      "sha256": "ef7ddefdca87e15028406184bb7e536eb48f58878fb2c732ec97ee7633629744"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000303/000303.npy": {
+      "bytes": 24872,
+      "sha256": "939f7da584a0791cac5c21a724ebfe9596b808d2897e3da1acc71645cf134713"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000304/000304.npy": {
+      "bytes": 5496,
+      "sha256": "31acbefd9ad664f0c74830a27436f873a585ce27962d2092eb77ba391b00465f"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000305/000305.npy": {
+      "bytes": 3480,
+      "sha256": "59f8a95c3c6a6de90d8d16027568516c7fad0bde19c391c1df7836d4a761e5b8"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000306/000306.npy": {
+      "bytes": 6064,
+      "sha256": "f3611e31538c92cd06e8e7b27982fd8881e22957c8b1a376a31fe3b74a69e941"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000307/000307.npy": {
+      "bytes": 4840,
+      "sha256": "9ed4f69ee82fcfee0aa0e4837bea2bb81ae3beac9910a291b2e53f7a38a754de"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000308/000308.npy": {
+      "bytes": 17464,
+      "sha256": "958b4a98d2b97d1c73b11813071fc096aec97674672663a00e9c61258f662456"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000309/000309.npy": {
+      "bytes": 6672,
+      "sha256": "e7db9b38aa1d2b9cfd48cad1cfd7fe1eaaef8560d4f8b118c8a855ee6f2291a0"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000310/000310.npy": {
+      "bytes": 6192,
+      "sha256": "e19aae244daee5c50e88f4e2c31e73a4031a68aefcb13ece97b88644b46d6008"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000311/000311.npy": {
+      "bytes": 2416,
+      "sha256": "4e271e29cf9b9b2e623b49ec0a792b9bee4430ebd185bb958a737c1161783123"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000312/000312.npy": {
+      "bytes": 4288,
+      "sha256": "62e15660c33af3e586b56597250042e34c176fd4fe7fbaa87bdeacda4dd7c093"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000313/000313.npy": {
+      "bytes": 8560,
+      "sha256": "d52d827401ebb8a9ea406984dc233c2b70bb22ba53aca3482f48b306add8474c"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000314/000314.npy": {
+      "bytes": 5024,
+      "sha256": "b27af7bfbe046eec66c212444435d5a15e7cd2480933e447cbf97b5106c1889c"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000315/000315.npy": {
+      "bytes": 5784,
+      "sha256": "fd64026032a02aeee80e827c6917bfbc34e343102aa92c960422bb3b0ce70bc5"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000316/000316.npy": {
+      "bytes": 3336,
+      "sha256": "6c65f1df2912bcb79f4ad150687af04eaadd23c7d847873dbdde0f1f28a0342a"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000317/000317.npy": {
+      "bytes": 7848,
+      "sha256": "c13cb7c90af05875735a49eafd5c2db163cd20b06f140fb4f89b47bcb18c0c54"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000318/000318.npy": {
+      "bytes": 5144,
+      "sha256": "7a8613e5a663b3b5d9b97b17b8587cd64b462e6972eed407edd5a3494819bfe8"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000319/000319.npy": {
+      "bytes": 5248,
+      "sha256": "895cf7809db57acff5d3cb1d4183c99ab01c2b4da079b2be458b4eb00d39acf7"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000320/000320.npy": {
+      "bytes": 9616,
+      "sha256": "b7447bc64f3dbb43cc92e7343f06e1056d242937dff2fb9b2594da5b1520a7d0"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000321/000321.npy": {
+      "bytes": 6776,
+      "sha256": "7d36fa01e3b9131fb113b8f64a876e20f90e7ebcec880234cd5a0b94b1c72fed"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000322/000322.npy": {
+      "bytes": 8688,
+      "sha256": "4c33e66ef5d5c1ced6fd4b47336626970c8aed1fedc0e1540ec969a9cf50a8fd"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000323/000323.npy": {
+      "bytes": 872,
+      "sha256": "8a6e66a37153d4bb05a8ead15a341d1aa6da20750245a9d00ca2005636dc6035"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000324/000324.npy": {
+      "bytes": 6920,
+      "sha256": "b2704e077e01ec6d243aaa4a940fbfa7493068a474b97631718d9da131a6d7aa"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000325/000325.npy": {
+      "bytes": 5944,
+      "sha256": "c8866e922fe77f36385bb8ae42915a780553776bccb3d119dbbdbe7bfb33bf08"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000326/000326.npy": {
+      "bytes": 6608,
+      "sha256": "2405d79345d033a66c97da4c570bdcfa6d4ff35c423d4a31669df2ed7add932c"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000327/000327.npy": {
+      "bytes": 8024,
+      "sha256": "c80edfc183336963cf129a106a5e024b81802d22fcc488a18b9c5d54f77841ba"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000328/000328.npy": {
+      "bytes": 8640,
+      "sha256": "318b74f4b2fe3c77a0843e58068ddae885d822ab0b75bb18a789c49d86c6c018"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000329/000329.npy": {
+      "bytes": 10296,
+      "sha256": "99830815706779c037b37a2b289d0578084b3e7bdde765eb20e68a86458c07c4"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000330/000330.npy": {
+      "bytes": 15608,
+      "sha256": "a8ca9644865bb9be7109fc3ba71a73a94cc42b651ba03cc6762e37280dc98f7a"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000331/000331.npy": {
+      "bytes": 15912,
+      "sha256": "811e76aae9cb9c52480fa43a2f8bfeac5d24c5593f045d178940b3afb72637b1"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000332/000332.npy": {
+      "bytes": 3576,
+      "sha256": "622344119b5ed629d1f0f00d0e67db915276f3150f75dd8267592d93b064b731"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000333/000333.npy": {
+      "bytes": 5272,
+      "sha256": "c31bf57afc7e2c4793318235dd8f96c19eb37b9daef7f21967b39a9cdd27c535"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000334/000334.npy": {
+      "bytes": 4464,
+      "sha256": "9862c18f2fd1563fb8204567187924996dccf2dfa9915ad86757d454f8603eb3"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000335/000335.npy": {
+      "bytes": 3488,
+      "sha256": "517abe589eb6c164c96638279ca0c352be9f444fb040c8d2535453e2225cf808"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000336/000336.npy": {
+      "bytes": 13672,
+      "sha256": "78a9328947a8421c9bf9dbda880e19546fe3eb71653f0a9fbb5abeb96f84721a"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000337/000337.npy": {
+      "bytes": 4192,
+      "sha256": "cc8a1136d3c7be8d1aaad95f389662feb76e660418046662181f7db0f5f915e3"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000338/000338.npy": {
+      "bytes": 9664,
+      "sha256": "29523683f935f200dcc690c4d9e1a0f9aaefc219c3a80c031534eb126da95eb2"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000339/000339.npy": {
+      "bytes": 11416,
+      "sha256": "4c461cce8627f147d5e032ff07c368fabb4840a88b3ac8e3cedca63ef55a3543"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000340/000340.npy": {
+      "bytes": 4024,
+      "sha256": "b970f9d699f4754cab3edc72d01460a20449634859c489f63ea6449482f8e8b0"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000341/000341.npy": {
+      "bytes": 16440,
+      "sha256": "8278641bcc6a8619eb7a4ddd8d29f2a60a1edcdb35fc79e25dda5562f2477f00"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000342/000342.npy": {
+      "bytes": 8072,
+      "sha256": "72074d02d621905486fd82b7b7aaef4f76fb668f99f2a203e1b512f0c69f39ca"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000343/000343.npy": {
+      "bytes": 33152,
+      "sha256": "784ae636d4ed14c3624f6dec0c6643cf36df5c39ef8c1983a4b198d3a9fb99d6"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000344/000344.npy": {
+      "bytes": 7272,
+      "sha256": "3f440a95f307babc6046dead92a8ac0f7d267490a8a3da5a3ba0fb9a5662f361"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000345/000345.npy": {
+      "bytes": 5960,
+      "sha256": "86b017523a64888b23ad857d10cfe1483078cf904abdf78349d2847870e94523"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000346/000346.npy": {
+      "bytes": 26304,
+      "sha256": "9b3b81cbf16f85e5733566046a3ca4344a2b131ae866fa987b09a9aa48e6b6df"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000347/000347.npy": {
+      "bytes": 15760,
+      "sha256": "f33e67b1ab354acdf585f03eb93f3e07d93d4ce4696be011ed253e5aec2e7ad1"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000348/000348.npy": {
+      "bytes": 4512,
+      "sha256": "9347df2990e1b20807458262f15af7af69f225c2d07a2115d74b2bede796e018"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000349/000349.npy": {
+      "bytes": 5856,
+      "sha256": "bfd9c104d0988f2b78e561c96781e6325cdf7e9c036aca5c8316b96ad8377081"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000350/000350.npy": {
+      "bytes": 5904,
+      "sha256": "bc765e47623843b44493689859b7594cad00aebafa9cdbe0b975e5eadf175378"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000351/000351.npy": {
+      "bytes": 3384,
+      "sha256": "3f43c8474257f95c1a132c8fa0c285fbfdb55bc602219257d9115a314d6162b1"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000352/000352.npy": {
+      "bytes": 4344,
+      "sha256": "77ede710f4ff1b8448d86d5a11a6eb99d73e44002370754dfed2176f4100cc43"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000353/000353.npy": {
+      "bytes": 6872,
+      "sha256": "5c0489d95809b3aceebf8a6a1ecec596862cdc86c80abd8f17f889200f2bbaaf"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000354/000354.npy": {
+      "bytes": 14200,
+      "sha256": "054ac8c04f93eb59e84fa5907888e99d95cd6d8713d306e6c32d272b1c1bc53b"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000355/000355.npy": {
+      "bytes": 4800,
+      "sha256": "15884dd6c6bcb683bbb65e777249f371156b2851d9dd0fcba66b1b28200bf675"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000356/000356.npy": {
+      "bytes": 5296,
+      "sha256": "d9388b15b14ea7e31c7cbf82106f7f3a428e3bb829225e08490ba2eb7e227a8d"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000357/000357.npy": {
+      "bytes": 21288,
+      "sha256": "03962d5769273394b30935f253ae48915fd5958fff4aa98d127e4df583baebdb"
+    },
+    "inputs/labels/Test_IITB-Corridor/Test_Annotation/Annotation/000358/000358.npy": {
+      "bytes": 12712,
+      "sha256": "c8bc8f5c7c86534de8f0143d3c80939d0477a70fb000043f16117e736258b087"
+    },
+    "inputs/PREDICTIONS_PRIMARY.zip": {
+      "bytes": 2651453,
+      "sha256": "ef72f5b328b58c51bd75e9f80dfaac0fea5872af82a6f2ba39794139a5841cc6"
+    },
+    "inputs/PREDICTIONS_REPLAY.zip": {
+      "bytes": 2651453,
+      "sha256": "ef72f5b328b58c51bd75e9f80dfaac0fea5872af82a6f2ba39794139a5841cc6"
+    },
+    "inputs/SCIENTIFIC_CONTRACT_V1.json": {
+      "bytes": 2732,
+      "sha256": "e9f7b367f15491ed6df2bd17be2b53d148c5ce29ae4998f9b9f0edc449c8adbc"
+    },
+    "paper/main.pdf": {
+      "bytes": 259566,
+      "sha256": "aa606c4c6e3aa4cd1616a9a9ff7f32753e99fe0d096c3905d0d0f2be9dc0d577"
+    },
+    "paper/supplement.pdf": {
+      "bytes": 164787,
+      "sha256": "9143e710139e0face4aeacac46b000391d392f02fe8f91b9cb41f3eb8180bb2e"
+    },
+    "paper/投稿前复核报告_20260906.md": {
+      "bytes": 10588,
+      "sha256": "2c9916e04130de8a9cecb1d95853896b1d686030b2fe5e84b72e1558352675e8"
+    },
+    "README.md": {
+      "bytes": 5184,
+      "sha256": "e9c50f25c52334660bab1a2cde004368b21808129ffe45e9f00b4bdd05b8715e"
+    },
+    "reference/RESULT.json": {
+      "bytes": 25091,
+      "sha256": "041436e4df223c0a4edaf4827c488efacb2124bda42130317815e77f49143c2c"
+    },
+    "reference/RESULT.json.seal.json": {
+      "bytes": 411,
+      "sha256": "72623b080191f94d6a6fe2bfceb295d980d7916a5751552850622806c41fac54"
+    },
+    "requirements.txt": {
+      "bytes": 13,
+      "sha256": "7bd6b8946940b79948c548c8048e545684b91c8edc9444d8dfc0c8f76a97c0a7"
+    },
+    "RUN_REPRODUCE.cmd": {
+      "bytes": 823,
+      "sha256": "2ab0062c9be44b04b8780ec6f824832867077b109bff4427ace14bceac9ee0b4"
+    },
+    "scripts/evaluator_original.py": {
+      "bytes": 24381,
+      "sha256": "d5aab95d0d1d7df7d25454d0e8416608b74a34c7e316de3e7ab0a03316315ef9"
+    },
+    "scripts/reproduce.py": {
+      "bytes": 8135,
+      "sha256": "5cb733fb91e3a75d24c1b4fec18b1b06bb7e1366c165d0d4f4ba85da6e480260"
+    },
+    "scripts/toy_demo.py": {
+      "bytes": 1023,
+      "sha256": "1789bd11fc427b502e1d4b704e6a5c90b1bcab20df542811ca54dab344dfd867"
+    },
+    "templates/01_首轮任务书.md": {
+      "bytes": 6183,
+      "sha256": "486842489f5833ef42c317d4ed2b1b08e33b9cbe6121b5fee48b164b0708f974"
+    },
+    "templates/02_实验记录模板.md": {
+      "bytes": 5781,
+      "sha256": "4f81d04abbca2e4f5d6c4486074dfff6510dd869eaf0702c8526ee001d01cd3a"
+    },
+    "templates/03_提问与周报模板.md": {
+      "bytes": 3497,
+      "sha256": "b207df1098c8138cc0d84c4b4e4b52dd8db10ee5d1fa2a7fc0a80edd453c4777"
+    },
+    "templates/04_自检题与参考答案.md": {
+      "bytes": 7567,
+      "sha256": "6fca06818a0ec6c3955b2618442707d2355b418a750c1c0c9f171502e55b398f"
+    },
+    "validation/desktop_preview.png": {
+      "bytes": 123689,
+      "sha256": "9fafd7e72e18adb51277f242b850659c7ad4d870ff97f6f470a06a37baa64450"
+    },
+    "validation/mobile_preview.png": {
+      "bytes": 55708,
+      "sha256": "39ec4dcfa6f952726a29600da24cced884dfbe15afc1f2035850ba5fe20c6b75"
+    },
+    "validation/page_check.json": {
+      "bytes": 59,
+      "sha256": "648d3c1744f832674a5c67e68d8b16a195ecb678055075df408a93b661cc5a01"
+    },
+    "validation/transfer_test.json": {
+      "bytes": 451,
+      "sha256": "af2fedd7c81f319b76545f96f8d9cd356e1e9fc66e8e0c38a897a0e58b7ae594"
+    },
+    "validation/作者验证记录.md": {
+      "bytes": 1365,
+      "sha256": "9eed9280d88b830e75beecdcb66805b00acb3ee8f26a0d06c1be647b97fdfcaf"
+    },
+    "自学讲解与任务书.pdf": {
+      "bytes": 1161016,
+      "sha256": "b5c1af55c32d72faf80dc99acc00f9425387af41158245a7ee6fd8dd23486d9b"
+    }
+  }
+}

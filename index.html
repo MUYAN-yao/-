@@ -1,0 +1,724 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CIL 本科生科研合作自学包</title>
+<style>
+:root{color-scheme:light;--ink:#183246;--muted:#5c6e79;--line:#dce4e7;--accent:#087f79}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:#f3f6f6;font:16px/1.85 "Microsoft YaHei","Noto Sans CJK SC",sans-serif}a{color:#087a78;text-underline-offset:3px}a:focus-visible,button:focus-visible{outline:3px solid #e1a83a;outline-offset:4px}.hero{padding:44px max(24px,calc((100vw - 1140px)/2));background:#163d4b;color:white}.eyebrow{font-size:13px;letter-spacing:.1em;color:#b7dddc}.hero h1{font-size:34px;line-height:1.4;margin:10px 0}.hero p{max-width:780px;color:#d3e5e7}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.actions a,.actions button{padding:9px 16px;border:1px solid #aac5ca;border-radius:6px;color:white;background:transparent;font:inherit;cursor:pointer}.actions a:first-child{background:#0b8a80;border-color:#0b8a80;text-decoration:none}.layout{max-width:1200px;margin:auto;display:grid;grid-template-columns:180px minmax(0,1fr);gap:28px;padding:28px 24px}nav{position:sticky;top:20px;align-self:start}nav a{display:block;margin:0 0 6px;padding:8px 12px;border-radius:5px;text-decoration:none}nav a:hover{background:#e1eeed}main{min-width:0}section{padding:30px 36px;margin:0 0 24px;background:white;border:1px solid var(--line);border-radius:10px;scroll-margin-top:20px}.section-label{color:var(--muted);font-size:13px;margin-bottom:18px}section h1{font-size:26px;line-height:1.5}h2{font-size:22px;margin-top:32px;line-height:1.5}h3{font-size:18px;margin-top:24px}p{margin:12px 0}strong{color:#123f4a}img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:5px;margin:20px 0}code{font-family:Consolas,monospace;font-size:.88em;background:#edf3f4;padding:2px 4px;overflow-wrap:anywhere}pre{padding:16px;background:#edf3f4;border-left:3px solid var(--accent);white-space:pre-wrap;overflow-wrap:anywhere}pre code{padding:0}table{width:100%;border-collapse:collapse;font-size:14px;margin:18px 0;display:block;overflow-x:auto}td,th{padding:9px 11px;border:1px solid var(--line);vertical-align:top}th{background:#eaf2f3}blockquote{margin:18px 0;border-left:4px solid var(--accent);padding:4px 18px;background:#f0f7f6}li{margin:6px 0}.note{padding:12px 16px;border:1px solid #a5c7c5;background:#e9f5f2;border-radius:5px;font-size:14px}.footer{text-align:center;padding:24px;color:var(--muted);font-size:13px}
+body{overflow-wrap:anywhere}table{max-width:100%}
+@media(max-width:800px){.hero{padding:28px 20px}.hero h1{font-size:27px}.layout{display:block;padding:16px}nav{position:static;display:flex;gap:4px;flex-wrap:wrap;margin-bottom:12px}nav a{padding:5px 9px;font-size:14px}section{padding:22px 18px}section h1{font-size:24px}}
+@media print{body{background:white;font-size:10pt;line-height:1.65}p{margin:8px 0}li{margin:3px 0}h2{margin-top:24px}h3{margin-top:16px}.hero{padding:18px;color:#183246;background:white;border-bottom:2px solid #087f79}.hero p,.eyebrow{color:#183246}.actions,nav,.section-label{display:none}.layout{display:block;padding:0}section{border:0;padding:0;margin:24px 0;break-before:page;border-radius:0}h1,h2,h3{break-after:avoid}img,table,pre,blockquote{break-inside:avoid}img{max-height:210mm;object-fit:contain}a{color:#183246}table{display:table;font-size:9pt}tr{break-inside:avoid}.footer{display:none}}
+</style></head><body><header class="hero"><div class="eyebrow">CIL · 科研合作 · 2026-09-09</div><h1>从看懂问题，到负责一个实验</h1><p>先解释分数曲线究竟证明了什么，再重算一张表，最后提出能检验论文结论的对照。首轮只用现成预测和标签，不训练模型。</p><div class="actions"><a href="#guide">开始学习</a><a href="#task">查看首轮任务</a><a href="自学讲解与任务书.pdf">下载阅读版 PDF</a><button onclick="window.print()" type="button">打印讲义</button></div></header><div class="layout"><nav aria-label="材料目录"><a href="#start">先读这里</a><a href="#guide">中文讲解</a><a href="#task">首轮任务书</a><a href="#record">实验记录模板</a><a href="#questions">提问与周报</a><a href="#quiz">自检与参考答案</a><a href="#rights">数据与使用边界</a><a href="validation/作者验证记录.md">入口测试记录</a></nav><main><div class="note">本包用于经导师确认权限的内部合作。原实现重放 ≠ 独立复现；追加分析 ≠ 新的盲测。图中示意与真实结果已分别注明。</div><section id="start" aria-label="先读这里"><div class="section-label">先读这里 · <a href="README.md">原始 Markdown</a></div><h1>CIL 科研合作自学包：从看懂问题到负责一个实验</h1>
+<p>版本：2026-09-09。对象：首次加入本课题的合作者。你不需要先读完整个项目，也不需要训练大模型。</p>
+<p><strong>双击 index.html 开始阅读。</strong> 首轮目标是理解研究问题，并使用既有分数和标签重算论文主表的 IITB 三行。做完后交付解释与问题清单，而不是只提交“运行成功”截图。</p>
+<h2>阅读与执行顺序</h2>
+<ol>
+<li>阅读 <a href="#guide">中文讲解</a>，先看示意图和真实对照结果。不要把示意图当真实视频。</li>
+<li>阅读 <a href="templates/01_%E9%A6%96%E8%BD%AE%E4%BB%BB%E5%8A%A1%E4%B9%A6.md">首轮任务书</a>，明确你负责什么、不负责什么。</li>
+<li>运行玩具示例，再校验输入，再重放原实验。运行方法见下方。</li>
+<li>用 <a href="templates/02_%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95%E6%A8%A1%E6%9D%BF.md">实验记录模板</a> 记录结果；按 <a href="templates/03_%E6%8F%90%E9%97%AE%E4%B8%8E%E5%91%A8%E6%8A%A5%E6%A8%A1%E6%9D%BF.md">提问与周报模板</a> 整理疑点。</li>
+<li>先独立回答 <a href="templates/04_%E8%87%AA%E6%A3%80%E9%A2%98%E4%B8%8E%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88.md">自检题</a>，再看答案。第二阶段只设计网格敏感性分析，得到导师确认后才执行。</li>
+</ol>
+<h2>环境准备（只做一次）</h2>
+<p>完整解压 ZIP 到普通文件夹，不能在压缩包预览内运行。推荐 Python 3.12；固定依赖为 NumPy 2.3.5，适合 Python 3.11–3.13。无需 GPU、PyTorch、原始视频、模型权重或数据下载。</p>
+<p>在材料包根目录打开终端。建议使用隔离环境：</p>
+<pre><code class="language-text">python -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe scripts\toy_demo.py
+.venv\Scripts\python.exe scripts\reproduce.py --check-only
+.venv\Scripts\python.exe scripts\reproduce.py
+</code></pre>
+<p>如果 Windows 只有 <code>py</code> 命令，把第一行改成 <code>py -3 -m venv .venv</code>。使用隔离环境时按以上命令运行，不必激活环境。Linux/macOS 将 <code>.venv\Scripts\python.exe</code> 换成 <code>.venv/bin/python</code>，路径分隔符用 <code>/</code>。</p>
+<p>如果当前 Python 已有 NumPy，可直接执行：</p>
+<pre><code class="language-text">python scripts/toy_demo.py
+python scripts/reproduce.py --check-only
+python scripts/reproduce.py
+</code></pre>
+<p>Windows 的 <code>RUN_REPRODUCE.cmd</code> 只是方便入口，优先使用包内 <code>.venv</code> 的 Python，否则使用系统 <code>py -3</code> 或 <code>python</code>；不自动安装依赖。脚本不会联网；首次安装 NumPy 需要网络或你已有的离线安装包。</p>
+<h2>你会看到什么</h2>
+<ul>
+<li>玩具示例：第一组 AP 都为 1、单对 TIA 为 0；第二组 donor AP 为 5/12。它们是等长网格上的数学例子，不是正式样本。</li>
+<li>输入检查：核对封存预测、协议、原评估脚本和 150 个标签的哈希；不计算指标。</li>
+<li>原实现重放：完整三候选、8 个 donor、134 个归属目标、10,000 次按视频抽样。CPU 运行，具体时间依机器而异，不需要反复启动。</li>
+<li>每次新建 <code>outputs/replay_时间戳/</code>：<code>REPORT.md</code> 是易读结果，<code>table_ii_iitb.csv</code> 是三行表与区间，<code>comparison.json</code> 是与封存结果的逐项对比，<code>environment.json</code> 记录环境。</li>
+<li><code>REPLAY_RESULT.json</code> 明确标为教学重放。内部历史字段描述原研究，不代表你进行了新的一次独立确认。</li>
+</ul>
+<p>本入口调用原评估函数，因此首先是<strong>原实现重放</strong>，不是独立代码复现。要形成科研贡献，还要解释分母、对照、统计单位、结论边界，并经导师审查提出下一步实验。</p>
+<h2>目录说明</h2>
+<table>
+<thead>
+<tr>
+<th>目录/文件</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>index.html / guide.md</td>
+<td>自学入口与中文讲解</td>
+</tr>
+<tr>
+<td>templates/</td>
+<td>任务书、记录模板、提问模板、自检题</td>
+</tr>
+<tr>
+<td>assets/</td>
+<td>论文原理图、真实汇总结果图及对应汇总数值</td>
+</tr>
+<tr>
+<td>paper/</td>
+<td>当前论文正文/补充 PDF、投稿前复核报告，仅为稿件快照</td>
+</tr>
+<tr>
+<td>inputs/</td>
+<td>两份固定预测包、协议、对齐说明、原标签及其记录</td>
+</tr>
+<tr>
+<td>reference/RESULT.json</td>
+<td>封存参考答案，只读，不是学生产出</td>
+</tr>
+<tr>
+<td>scripts/evaluator_original.py</td>
+<td>原评估代码的逐字副本，不改原文件</td>
+</tr>
+<tr>
+<td>scripts/reproduce.py</td>
+<td>安全校验、重放、比较、生成报告的教学入口</td>
+</tr>
+<tr>
+<td>validation/</td>
+<td>材料制作者的入口测试记录，不代替你自己的运行和分析</td>
+</tr>
+<tr>
+<td>outputs/</td>
+<td>你运行后新生成的结果；初始包不含作者运行输出</td>
+</tr>
+</tbody></table>
+<h2>出错怎么办</h2>
+<ol>
+<li><code>No module named numpy</code>：确认安装和运行用的是同一个 Python。优先使用上面的 <code>.venv\Scripts\python.exe</code>。</li>
+<li>哈希不匹配或标签缺失：不要改代码绕过；重新解压一份完整包，核对是否误编辑了 inputs/reference。</li>
+<li><code>DIFFERENCE DETECTED</code>：保留全部输出和环境信息，按模板提问。不要换种子或阈值把数值调到一致。</li>
+<li>卡住：记录启动时间与终端输出，先确认仍在计算。窗口关闭前保存报错，不要并行启动多份相同实验。</li>
+</ol>
+<h2>数据与合作边界</h2>
+<p>先阅读 <a href="#rights">数据和使用说明</a>。本包不含原始视频、权重、密码或服务器凭据。只用于导师确认有权共享的课题组内部研究；不得默认上传公开仓库或云端 AI。</p>
+<p>问题按“我想检验什么—做了什么—观察到什么—我的解释—需要确认什么”提问。不要只发截图说“跑不通”。署名根据实际贡献讨论，本包不承诺论文录用或作者排序。</p>
+</section><section id="guide" aria-label="中文讲解"><div class="section-label">中文讲解 · <a href="guide.md">原始 Markdown</a></div><h1>CIL 自学讲义与第一阶段研究任务</h1>
+<p>这份材料直接面向加入项目的同学。你不需要先读懂整个仓库，也不需要重新训练模型。第一阶段是理解一个评价问题，重放三个已封存的结果，找出需要核验的假设；之后再与导师确定一项能进入论文的敏感性分析。</p>
+<p>这里的 CIL 全称为 Content Identity Licensing。它是对已有视频异常分数的离线审计方法，不是新的检测模型。现有论文仍是待作者核验的工作稿；本材料既不承诺录用，也不把你的学习任务包装成已经完成的新科研成果。</p>
+<h2>1. 先思考：高分到底证明了什么？</h2>
+<p>设一段视频四个时刻的标签为 <code>[0, 0, 1, 1]</code>，0 是正常，1 是异常。模型给出的分数是 <code>[0.1, 0.2, 0.8, 0.9]</code>，分数越高表示越异常。</p>
+<p>先不要往下看，写下你的答案：</p>
+<ol>
+<li>这条曲线是否把异常排在正常前面？</li>
+<li>假如另一个视频的分数为 <code>[10, 20, 30, 40]</code>，把它放到当前视频上，会不会也表现很好？</li>
+<li>如果完全不看画面，只输出一条随时间递增的线，也能得高分，原来的高分还能证明模型理解了异常吗？</li>
+</ol>
+<p>答案是：两条曲线都把两个异常时刻排在最前面，AP 和 ROC AUC 都为 1。这说明分数和标签排序一致，却没有说明分数必须来自这个视频，更没有证明语义理解。</p>
+<p><a href="assets/cil_protocol.png" target="_blank" rel="noopener"><img src="assets/cil_protocol.png" alt="CIL 原理示意"></a></p>
+<p>这张图是原理示意，不是真实视频实验。先看左侧的自有曲线与外来曲线，再看中间的差值。CIL 问的是：<strong>固定当前视频的标签，只替换分数曲线的归属，表现是否下降？</strong> 它没有把视频内容替换后重新运行模型，因此不能把这一操作直接解释为视觉内容的因果干预。</p>
+<h2>2. 六个概念，够你开始工作</h2>
+<h3>AP 与 AUC：排序好不好</h3>
+<p>AP（平均精确率）关注高分位置聚集了多少异常。没有并列分数时，可按分数从高到低排列，在每个异常出现的位置计算“到此为止异常数／已取位置数”，最后对这些精确率求平均。上面的异常在第 1、2 位，所以 AP = <code>(1/1 + 2/2)/2 = 1</code>。有并列分数时按分数组整体处理，不能随意拆开并列项来提高 AP。</p>
+<p>ROC AUC 可以理解为：随机取一个异常和一个正常，异常分数更高的概率，并列记半分。AP 会受异常比例影响；AUC 在固定两类分数分布时不直接依赖类比例。两者都不是理解能力分数，也不能互相替代。</p>
+<h3>Rank：先比较形状，再转移曲线</h3>
+<p>CIL 把每条曲线转换为视频内部的百分位秩；相同分数取平均秩。实现为 <code>(平均秩 − 0.5)/长度</code>，秩从 1 开始。上面两条递增曲线都变为 <code>[0.125, 0.375, 0.625, 0.875]</code>。</p>
+<p>这样去掉了绝对分数尺度。不同长度的视频按从 0 到 1 的相对进度插值对齐，而不是按实际秒数寻找同一动作。这个转移有假设：不同视频的相对进度是否适合比较？秩转换也不能用来证明模型的概率校准正确。</p>
+<h3>Own 与 donor：换分数，不换标签</h3>
+<p>Own 是目标视频自己的曲线；donor 是其他视频提供的曲线。每次都用目标视频的标签评价，<strong>不把 donor 的标签搬过来</strong>。</p>
+<p>IITB 实验为每个目标固定八个非自身 donor，来自视频 ID 的确定性哈希排序。协议中的 shift 是这个排序里的位置偏移，不是把曲线沿时间轴移动几帧。donor 选择不应在看到效果后改为“更容易击败”的对象。</p>
+<h3>TIA：自有曲线的平均优势</h3>
+<p>对一个目标视频：</p>
+<p><code>TIA_i = 自有秩曲线的 AP − 八条转移 donor 秩曲线 AP 的平均值</code></p>
+<p>再对所有合格目标等权平均，得到总体 TIA（target-identity advantage）。四时刻例子中，own AP = 1，donor AP = 1，所以 TIA = 0。漂亮的检测指标与零归属优势可以同时发生。</p>
+<p>这个例子的曲线等长、转移后的离散秩完全相同。不同长度下的取样、并列与插值可能破坏这个条件，不能随口推广为“所有共同时间模板的 TIA 必定严格为零”。</p>
+<h3>CNM：是否超过规定的无内容对照</h3>
+<p>只得到正 TIA 仍不够：视频时长或采样方式等信息，也可能制造归属优势。IITB 预先规定四种不读取视觉内容的控制曲线：中心时间、时长相关中心、线性进度、采样网格先验。</p>
+<p><code>CNM = 候选曲线的 TIA − 四种控制曲线中最大的 TIA</code></p>
+<p>这里先计算各控制在目标集合上的平均 TIA，再取最大值；不是每个视频临时挑一条最强控制。每次 bootstrap 也要重新取控制最大值，不能只减去一次固定常数。</p>
+<p>CNM 的名字是 content-necessity margin，但正值只说明超过了<strong>这些已列明的控制</strong>，不意味着排除了所有捷径。TIA/CNM 是 AP 单位的差值，不是准确率，也不是“理解概率”。</p>
+<h3>CIL 通过：不是看一个正数</h3>
+<p>还要检查预定效果下限、置信下界、分层结果、完整候选报告、标签访问与回放等门槛。IITB 同时考虑三个候选的推断，不能仅展示单个最好看的区间。通过也只授权限定的论文表述，不是安全部署认证。</p>
+<h2>3. 看已有结果：证据与边界一起读</h2>
+<p><a href="assets/cil_ownership_control.png" target="_blank" rel="noopener"><img src="assets/cil_ownership_control.png" alt="Pistachio 归属对照"></a></p>
+<p>Pistachio 是合成视频数据集。这张结果图不是模拟数字：ridge 分数的 TIA 为 0.1181，CNM 为 0.1113；确定性错配归属后 CNM 约为 −0.01085，区间约为 <code>[−0.0369, 0.0148]</code>。</p>
+<p>正确说法是：“在这个协议下，自有曲线具有正向优势；错配没有显示明确的正向优势。”不能说“错配效果已证明为零”。图中前两行来自原确认端点；crossed 与 wrong-owner 是同一已使用数据上的确认后检查，不是新增独立确认。</p>
+<p><a href="assets/cil_main_results.png" target="_blank" rel="noopener"><img src="assets/cil_main_results.png" alt="不同证据角色的结果"></a></p>
+<p>这张总图用来区分证据角色，不用来按 CNM 给不同数据集上的模型排名。CNM 依赖 donor 和控制协议；也有归属通过而普通检测效用不足的情况。</p>
+<p>第一阶段只重放 IITB Corridor 的三个候选，对应 <a href="paper/main.pdf">正文</a> 的 Table II：</p>
+<table>
+<thead>
+<tr>
+<th>候选</th>
+<th align="right">TIA</th>
+<th align="right">CNM</th>
+<th align="right">普通 AUC</th>
+<th align="right">普通 AP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>正常特征距离</td>
+<td align="right">0.0388</td>
+<td align="right">0.0379</td>
+<td align="right">0.6818</td>
+<td align="right">0.7290</td>
+</tr>
+<tr>
+<td>时序新颖度</td>
+<td align="right">0.0660</td>
+<td align="right">0.0651</td>
+<td align="right">0.7164</td>
+<td align="right">0.7523</td>
+</tr>
+<tr>
+<td>相邻帧差分</td>
+<td align="right">0.0459</td>
+<td align="right">0.0451</td>
+<td align="right">0.6656</td>
+<td align="right">0.7102</td>
+</tr>
+</tbody></table>
+<p>三者分别是正常训练特征的标准化距离、相邻采样特征的余弦变化、相邻灰度帧的平均绝对差。这是预先固定的完整简单候选族，不是从很多模型中只留下的前三名。表格是四位小数的阅读参考；程序比较应使用封存结果的完整数值与明确容差。</p>
+<h3>为什么一处是 134，一处是 150？</h3>
+<p>150 个测试视频中，134 个同时含正常和异常标签，10 个全正常，6 个全异常。单个常量标签视频不能提供本审计需要的两类时间排序，因此不进入 TIA 的目标均值。</p>
+<p>但这 16 个视频仍在 150 个视频的 donor 池里，也仍参与普通全局 AUC/AP。普通指标汇总全部 150 个视频的 181,567 个对齐帧。<strong>归属审计是 134 个目标等权平均；全局指标是所有帧汇总，较长视频贡献更多帧。</strong> 不能为了统一数字把这 16 个视频全部删掉。</p>
+<h3>为什么不按帧 bootstrap？</h3>
+<p>同一视频相邻帧高度相关，把它们当成大量独立样本容易夸大确定性。原确认分析以目标视频为重采样单位，固定 donor 安排，进行 10,000 次抽样，并报告区间及联合候选门槛。</p>
+<p>这仍不解决所有依赖：donor 会被重复使用，多个视频可能共享摄像头。后续 crossed 分析对目标与 donor 角色分别赋重，只在每个目标已有八条边上计算，不是补齐全部视频两两组合；它也不能保证所有依赖都已建模。读区间时不要说“真值有 95% 概率落在这一个区间内”。</p>
+<h2>4. 第一阶段：重放、解释、留下差异记录</h2>
+<p>按 <a href="#start">运行说明</a> 准备 Python 3.11–3.13（推荐 3.12）和本包指定的 NumPy。代码、输入与输出用途见 README。先运行玩具例子，再校验材料，最后重算：</p>
+<pre><code class="language-text">python scripts/toy_demo.py
+python scripts/reproduce.py --check-only
+python scripts/reproduce.py
+</code></pre>
+<p>Windows 可使用 <code>RUN_REPRODUCE.cmd</code>。脚本不需要训练或 GPU；安装依赖如需网络，由你根据环境手动执行，不要把断网、缺包误判为科学结果失败。</p>
+<p><code>--check-only</code> 只检查输入身份、哈希和 150 个标签，不会重算实验。完整运行调用保留的原评价实现，输出到独立的 <code>outputs/replay_UTCtimestamp/</code>，包括结果、比较报告、三行 CSV 表及环境记录。</p>
+<p>这叫<strong>现有预测上的原实现重放</strong>，不是从视频重提特征、重训模型，也不是独立编写评估器的第三方复现。重复成功增加可检查性，不增加新的独立确认样本。不得覆盖 inputs、原评估器或封存结果；有差异先保留全部日志和输出。</p>
+<p>建议分三个可检查的小阶段，而不是承诺固定天数：</p>
+<ol>
+<li>读本讲义并手算玩具例子，用自己的话解释 own、donor 和两个分母。</li>
+<li>完成一次材料检查与完整重放，读比较报告，记录环境和所有差异。</li>
+<li>对照 <code>scripts/evaluator_original.py</code> 的 rank、AP、donor、bootstrap 与对齐函数，交一页“输入如何变成这三行数字”的说明。</li>
+</ol>
+<p>首轮交付是：一张三候选表、一份差异记录、一页逻辑说明、一次由你主讲的讨论。使用 <code>templates/</code> 中的记录模板。验收不以运行次数计，而是你能否解释结果、定位差异并指出结论边界。</p>
+<h2>5. 第二阶段：先获批，再做网格敏感性分析</h2>
+<p>现有 IITB 标签长度一致比解码视频短一个元素。原实现从三个候选分数中删除首元素，再要求与标签严格等长；四条解析控制曲线则直接生成在最终长度网格上。这不是“所有曲线都先生成再删首元素”。</p>
+<p>待查问题是：控制曲线如果改为先按原生长度生成再裁去首元素，TIA/CNM 与最终判断会改变多少？这涉及离散采样、排序及并列，不能未经检验就认定等价。具体背景见 <a href="paper/supplement.pdf">补充材料</a> 的 IITB 对齐说明。</p>
+<p>先提交计划，等待导师书面批准后再运行。计划至少写明：两种实现的精确定义、保持不变的候选/标签/donor/随机种子/统计规则、全部比较字段、测试方法、结果目录及停止条件。不要顺手尝试删末帧、平滑或调 donor，也不要看结果后才选主指标。</p>
+<p>我们已知道原结果，追加实验必须叫“确认后的敏感性分析”，不能重新命名为盲测。若稳健，说明稳健到哪种变动；若不稳健，说明哪些主张需要收窄。两种答案都有价值，不能以“支持原论文”为验收条件。</p>
+<h2>6. 如何用 AI、提问与汇报</h2>
+<p>AI 可以解释代码、生成测试和协助作图；你负责检查其假设与数值。先要求它说明“保持了什么、改变了什么、什么结果会推翻判断”，不要直接要求“让实验通过”。每段进入结果链的代码都要能解释，并留下使用记录；AI 生成的结论不能当成证据。</p>
+<p>本包是受控协作材料，不是公开发布许可。原始视频、标签、逐视频预测与未公开稿件能否发给云端 AI，需先问导师；默认不上传，不公开转发。哈希只能核验文件身份，不能证明数据权利或研究正确。</p>
+<p>提问时带上四项：你要回答的问题、你当前的理解、最小代码/命令与完整报错、你已经检查过什么。科学疑问不必等“自己想通”才问，尤其是发现标签错位、协议差异、结果不符或权限不明时。</p>
+<p>汇报用“问题—设计—证据—限制—下一步”，不要只说“全绿”。合作署名依据实际设计、分析、写作与责任承担讨论；完成运行任务不自动保证固定作者位置或独立论文。</p>
+<p>最后自测：不用 AI，能否回答“为什么 AP=1 仍可 TIA=0”“为什么正 CNM 不证明理解”“134 与 150 各指什么”“这次重放增加了什么、没有增加什么”？能讲清这些，再进入追加实验，你就已经在承担一个具体科研问题，而不只是操作软件。</p>
+</section><section id="task" aria-label="首轮任务书"><div class="section-label">首轮任务书 · <a href="templates/01_%E9%A6%96%E8%BD%AE%E4%BB%BB%E5%8A%A1%E4%B9%A6.md">原始 Markdown</a></div><h1>首轮任务书：检查 CIL 的三行结果是否可追溯</h1>
+<p>姓名：________　开始日期：________　约定讨论日期：________</p>
+<h2>你负责的问题</h2>
+<p>我们希望知道：一段视频自己的异常分数曲线，是否比来自其他视频的分数曲线更适合这段视频的标签？这个优势是否超过预先规定的简单时间规则？</p>
+<p>你的首轮责任是重放已有 IITB 评估，核对三种候选方法的完整结果，并解释计算与证据。不要求重新训练模型，也不要求让分数变高。发现不能重现、实现与文字不一致、结论需要收窄，同样是有价值的交付。</p>
+<p>开始前请先阅读材料包首页及讲解材料。本任务书中的命令入口以材料包首页为准，不要在原项目封存目录里操作。</p>
+<h2>已提供什么、暂时不做什么</h2>
+<p>已有固定预测、150 个视频的标签、冻结协议、对齐修订、参考结果和评估代码。首轮计算在 CPU 上进行，使用 Python、NumPy 与标准库；不需要 GPU、不需要训练，也不需要下载原始视频。</p>
+<p>三种候选方法必须全部报告：</p>
+<table>
+<thead>
+<tr>
+<th>代码名称</th>
+<th>阅读名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>resnet18_normal_diagonal</code></td>
+<td>正常特征距离</td>
+</tr>
+<tr>
+<td><code>resnet18_temporal_novelty</code></td>
+<td>时序新颖度</td>
+</tr>
+<tr>
+<td><code>pixel_frame_difference</code></td>
+<td>相邻帧差分</td>
+</tr>
+</tbody></table>
+<p>四个哨兵也必须保留：<code>sentinel_center_prior</code>、<code>sentinel_duration_center</code>、<code>sentinel_linear_progress</code>、<code>sentinel_sampling_grid</code>。它们是这次预先规定的对照族，不代表穷尽了所有非内容解释。</p>
+<p>暂时不做：新增模型、调参、另找数据集、删掉不利候选、改变门槛、追加网格实验、联系数据提供方或上传数据。不要把“顺便试一下”变成未经讨论的新研究路线。</p>
+<h2>第一阶段：按原实现重放并理解</h2>
+<ol>
+<li>阅读讲解，写出你对 TIA、CNM 和普通检测指标的理解。先写自己的解释，再用材料核对。</li>
+<li>记录 Python/NumPy 版本、输入文件清单与校验结果。输入只读，新输出写入自己的新目录。</li>
+<li>按材料包入口运行一次原实现评估。完整保留命令、标准输出、报错和结果；出现差异先记录，不为对齐参考数字而修改算法。</li>
+<li>对照参考结果核对全部三种候选、四个哨兵、样本计数、区间、门槛和最终判定，不只核对论文四位小数。</li>
+<li>用自己的语言讲清三行主表。必须能追溯某个视频的自有曲线 AP、8 个 donor 曲线 AP 的均值以及二者之差；需要展开案例时先和导师确定范围，避免事后挑选“最好看”的案例。</li>
+</ol>
+<p>关键不变量：</p>
+<ul>
+<li>普通检测指标使用全部 150 个视频的对齐帧；归属审计均值使用 134 个同时包含正常与异常标签的目标视频。其余 10 个全正常、6 个全异常仍属于 150 视频 donor 池，不是删掉的数据。</li>
+<li>原候选分数先执行固定首帧裁剪：<code>score[1:]</code>，使其与标签长度一致。这是已有冻结对齐规则，不由你重新选择。</li>
+<li>每个目标固定 8 个 donor。<code>[7, 19, 31, 43, 59, 73, 91, 109]</code> 是对哈希排序后视频列表的循环索引位移，不是移动一条曲线的时间轴。</li>
+<li>bootstrap 以视频为单位，固定种子 <code>24082026</code>，共 <code>10000</code> 次。CNM 的最大哨兵在每一次抽样中重新计算，不能提前固定一名“冠军”。</li>
+<li>新重放说明这些保存的输入在原实现下能否重现结果；它不是重新训练，也不是一个新的独立数据确认或独立第三方验证。</li>
+</ul>
+<h2>第二阶段：只提交设计，导师确认后才考虑实施</h2>
+<p>疑点是哨兵曲线的生成网格。定义某视频最终标签长度为 <code>N</code>，原始候选分数长度为 <code>N+1</code>。</p>
+<table>
+<thead>
+<tr>
+<th>比较项</th>
+<th>原实现 A</th>
+<th>待讨论的备选 B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>候选分数</td>
+<td>原始分数 <code>[1:]</code></td>
+<td>完全相同，不改变</td>
+</tr>
+<tr>
+<td>目标标签</td>
+<td>原始标签，长度 N</td>
+<td>完全相同，不改变</td>
+</tr>
+<tr>
+<td>四个哨兵</td>
+<td><code>sentinels(N)</code></td>
+<td>先 <code>sentinels(N+1)</code>，再将每个哨兵数组裁为 <code>[1:]</code></td>
+</tr>
+</tbody></table>
+<p>这里 B 是拟议敏感性条件，不是已经证明正确的新标准。实现时若获批准，应对目标和 donor 的哨兵都一致采用该条件，再沿用原秩变换与归一化进度插值流程；不能只改变目标侧。</p>
+<p>请提交一页方案，回答：</p>
+<ol>
+<li>这两种约定各代表什么？为什么可能影响哨兵的排序或跨长度转移？为什么不能预先保证结果一定变化或一定不变？</li>
+<li>除哨兵生成方式外如何固定所有输入、8 个 donor、3 个候选、4 个哨兵、种子、10000 次抽样、门槛和区间算法？</li>
+<li>计划报告哪些逐视频差异、汇总差异与判定变化？如何配对使用相同的抽样索引？</li>
+<li>如果不稳健，哪些原主张需要收窄？如果稳健，为什么仍不能声称证明了模型理解内容或真实因果机制？</li>
+<li>什么条件下不值得追加实验，或只需修正文档？如何让导师选择“不做追加”“先查协议来源”或“收窄结论”？</li>
+</ol>
+<p>本阶段只交方案，不启动新实验。若获批准，所有条件、负结果与异常均应保留；这是已有确认结果之后的敏感性分析，不能重新命名为独立确认。</p>
+<h2>首轮交付与验收</h2>
+<ul>
+<li>一张三候选重算表，并附四哨兵及全部检查的机器可读输出。</li>
+<li>一份差异记录：无差异也需说明比较了什么、精度与容差如何确定；有差异必须保留，不能隐藏。</li>
+<li>一页实验逻辑说明：样本、对照、统计单位、能支持和不能支持的主张。</li>
+<li>一页第二阶段设计，标明“未获确认，未运行”。</li>
+<li>一次由你主讲的讨论：不用 AI 代答，解释关键计算，并诚实指出尚未理解的部分。</li>
+</ul>
+<p>验收看证据可追溯、能解释、保留反例与遵守边界，不看是否得到更高分。固定原代码成功运行是起点，不等于科研任务已经完成。</p>
+<p>建议以两周为首轮：前半段理解和重放，后半段解释差异与写方案；这只是安排建议，应按实际可投入时间与导师协商调整。遇到数据/协议冲突、需要改变参数或需要额外资源时，先用提问模板报告，不自行扩大范围。</p>
+</section><section id="record" aria-label="实验记录模板"><div class="section-label">实验记录模板 · <a href="templates/02_%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95%E6%A8%A1%E6%9D%BF.md">原始 Markdown</a></div><h1>实验记录与敏感性方案模板</h1>
+<p>请复制本模板到自己的工作目录后填写，不修改提供的原件。每次运行使用独立记录；失败和中断也要留档。</p>
+<h2>A. 基本信息</h2>
+<ul>
+<li>记录 ID / 日期：</li>
+<li>执行者：</li>
+<li>本次状态：原实现重放 / 仅设计、未运行 / 已获准的追加分析 / 失败 / 中断</li>
+<li>本次问题（一句话）：</li>
+<li>导师确认记录（原实现重放之外的分析必填；未确认写“未确认，不执行”）：</li>
+<li>输入包版本 / 校验清单：</li>
+<li>Python / NumPy / 操作系统版本：</li>
+<li>代码副本路径与哈希或版本：</li>
+<li>本次输出目录（必须是新目录）：</li>
+<li>命令原文与工作目录：</li>
+<li>AI 工具及具体用途（不得粘贴密钥或敏感数据）：</li>
+</ul>
+<h2>B. 输入与范围核对</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>预期</th>
+<th>实测 / 证据文件</th>
+<th>是否一致</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>测试视频</td>
+<td>150</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mixed-label 审计目标</td>
+<td>134</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>全正常 / 全异常视频</td>
+<td>10 / 6</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>每个目标 donor</td>
+<td>8，均不等于目标</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>候选 / 哨兵数</td>
+<td>3 / 4，全部报告</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>对齐规则</td>
+<td>候选原始分数 <code>[1:]</code> 与标签严格等长</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bootstrap</td>
+<td>视频单位；10000 次；种子 24082026</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CNM 哨兵选择</td>
+<td>每次抽样重新取四哨兵最大值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>输入是否改动</td>
+<td>否</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>是否新增训练或推理</td>
+<td>否</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>如果计数不一致，先定位输入、对齐或代码版本问题；不要删样本以达到预期数。150/134 是本包预期，不是可用筛选强行达成的目标。</p>
+<h2>C. 原实现重放结果</h2>
+<p>保留完整 JSON 等机器可读结果，下面表格仅供阅读。参考与重算列可分别填写为“参考 → 重算”；不要只比较四舍五入的论文数值。</p>
+<table>
+<thead>
+<tr>
+<th>候选</th>
+<th>TIA 点估计</th>
+<th>TIA 95% 区间</th>
+<th>TIA 同时单侧下界</th>
+<th>CNM 点估计</th>
+<th>CNM 95% 区间</th>
+<th>CNM 同时单侧下界</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>正常特征距离</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>时序新颖度</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>相邻帧差分</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>候选</th>
+<th>普通 frame AUC</th>
+<th>普通 frame AP</th>
+<th>AP−异常帧比例</th>
+<th>CIL 各项检查 / 判定</th>
+<th>普通效用检查 / 总判定</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>正常特征距离</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>时序新颖度</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>相邻帧差分</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>哨兵</th>
+<th>TIA 点估计</th>
+<th>95% 区间</th>
+<th>参考结果差异</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sentinel_center_prior</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>sentinel_duration_center</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>sentinel_linear_progress</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>sentinel_sampling_grid</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>五个分组的结果 / 所有布尔检查保存位置：</li>
+<li>完整逐视频效应保存位置：</li>
+<li>字段比较方法、容差及理由：</li>
+<li>输入/代码哈希是否一致：</li>
+<li>注意：文件路径、运行环境或记录元信息的变化与科学数值差异应分开报告；不得删去差异字段来声称一致。</li>
+</ul>
+<h2>D. 差异与异常记录</h2>
+<table>
+<thead>
+<tr>
+<th>时间 / 位置</th>
+<th>预期</th>
+<th>实际观察</th>
+<th>已检查的解释</th>
+<th>尚不能排除的解释</th>
+<th>下一步 / 是否需导师决定</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>包括失败运行、输入缺失、长度冲突、数值差异和文档歧义。没有发现差异时，写“在所列字段、输入版本和容差范围内未发现”，不要写“证明实现绝对正确”。</p>
+<h2>E. 第二阶段方案（默认未确认、未运行）</h2>
+<ul>
+<li>方案状态：未确认、未运行 / 导师要求修订 / 已确认（附日期和范围）</li>
+<li>科学问题：哨兵生成网格的两种约定是否改变现有审计结论？</li>
+<li>假设与可反驳条件：</li>
+<li>为什么该比较必要；也有哪些理由支持不追加实验：</li>
+</ul>
+<p>唯一拟变因素：对每个长度为 N 的标签序列，A 为 <code>sentinels(N)</code>；B 为 <code>sentinels(N+1)</code> 的每条输出曲线再取 <code>[1:]</code>。目标和 donor 两侧采用相同条件。两者均保留原候选 <code>score[1:]</code>、标签、秩变换和进度插值不变。</p>
+<p>固定项请逐一确认：</p>
+<ul>
+<li>150 视频 donor 池与 134 mixed-label 目标不变；8 个 donor 映射不变。</li>
+<li>3 候选、4 哨兵全部报告，不追选子集。</li>
+<li>bootstrap 种子 24082026、10000 次、视频单位不变；拟复用相同抽样索引作配对比较。</li>
+<li>每个条件中，每次抽样都重新计算最大哨兵；同时推断、五组检查和既有阈值不变。</li>
+<li>不改变普通检测指标的候选分数；如其数值变化，应先查是否误改了不变量。</li>
+<li>新结果另存；原始确认结果及不利条件均保留。</li>
+</ul>
+<p>计划表（在运行追加条件之前填写）：</p>
+<table>
+<thead>
+<tr>
+<th>输出</th>
+<th>计划如何比较</th>
+<th>什么观察会改变主张</th>
+<th>如何完整报告</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>三候选 TIA</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>四哨兵 TIA</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>三候选 CNM 与区间</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>逐视频效应 / 异常</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>各检查和最终判定</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>停止条件 / 最大执行范围（例如只比较 A 与 B，不扩展更多网格）：</li>
+<li>对“差异很小”的描述标准及理由（不能看完结果才选择一个有利标准）：</li>
+<li>如果原结论不稳健，拟收窄的具体措辞：</li>
+<li>如果原结论稳健，仍不能声称什么：</li>
+<li>导师决定：不做追加 / 先核对协议来源 / 修改方案 / 同意在上述范围运行 / 直接收窄结论</li>
+</ul>
+<p>这里是事后敏感性分析的设计，不是新的盲评或独立确认。旧封存记录中的“标签开启”等历史字段描述原实验，不代表学生获得了一份新的未见标签测试集。</p>
+<h2>F. 结论与交接</h2>
+<ul>
+<li>已观察到的事实：</li>
+<li>由事实支持的最窄结论：</li>
+<li>不能从中推出的结论：</li>
+<li>尚未解决的问题：</li>
+<li>能直接用于论文的文字草稿（注明重放或敏感性分析身份）：</li>
+<li>完整输出、环境信息、日志与图表所在位置：</li>
+<li>本次是否需要导师行动；如需要，具体决定是什么：</li>
+</ul>
+</section><section id="questions" aria-label="提问与周报"><div class="section-label">提问与周报 · <a href="templates/03_%E6%8F%90%E9%97%AE%E4%B8%8E%E5%91%A8%E6%8A%A5%E6%A8%A1%E6%9D%BF.md">原始 Markdown</a></div><h1>怎样提问、怎样汇报</h1>
+<p>你不需要把所有问题都独自解决后才提问。好的提问是让别人能快速定位事实与需要作出的决定，而不是展示“我已经很努力”。</p>
+<h2>提问模板</h2>
+<p><strong>问题标题：</strong> 用一句话说明哪里不清楚，例如“重算 CNM 的最大哨兵是否应该逐次变化？”</p>
+<ol>
+<li><strong>我在解决什么：</strong> 当前任务、运行命令或正在读的函数/段落。</li>
+<li><strong>我看到了什么：</strong> 精确数值、错误信息、文件位置；不要只说“跑不通”或“有问题”。</li>
+<li><strong>我的预期是什么：</strong> 依据哪条协议、参考结果或代码逻辑。</li>
+<li><strong>我已检查什么：</strong> 输入哈希、数组长度、候选名称、环境版本等；附简短证据。</li>
+<li><strong>我的暂时解释：</strong> 可以给出两个可能解释，并标明不确定性。</li>
+<li><strong>希望你决定什么：</strong> 例如确认解释、选择协议约定，或批准一个明确范围的后续检查。</li>
+</ol>
+<p>粘贴报错前检查是否含账号、密钥、访问令牌或未授权数据。代码和报错可提供最小必要片段；不要把整个数据包上传到聊天工具。</p>
+<h3>一个好的例子</h3>
+<blockquote>
+<p>我在解释 donor 映射。代码把视频 ID 哈希排序后按 7、19 等数值循环取其他视频，因此我认为它不是把同一条曲线移动 7 帧。之后才对 donor 曲线按归一化进度插值到目标长度。我的理解是否正确？如果正确，我会在报告中使用“视频索引位移”，不写“时间偏移”。</p>
+</blockquote>
+<h3>哪些情况不要自行尝试“修好”</h3>
+<ul>
+<li>输入与协议哈希不一致、预测/标签数量不一致、固定对齐不成立。</li>
+<li>需要改门槛、改种子、减 donor、删候选或删样本才能“通过”。</li>
+<li>想新增数据、训练模型、占用服务器或把材料上传 AI。</li>
+<li>发现不利结果，担心影响论文而想换一个版本报告。</li>
+<li>想运行尚未获准的第二阶段网格敏感性分析。</li>
+</ul>
+<p>这些情况应保留证据并提问。环境安装、路径拼写等普通问题可先按材料排查，但不要因此修改科学协议。若长时间卡住，及时报告，不必等到周报。</p>
+<h2>每周简报（建议一页以内）</h2>
+<p><strong>日期 / 姓名 / 本周可投入与实际投入：</strong></p>
+<p><strong>一句话进展：</strong> 本周查清了什么，而不是运行了多少次。</p>
+<table>
+<thead>
+<tr>
+<th>科学问题</th>
+<th>本周证据与文件</th>
+<th>当前判断</th>
+<th>仍不确定什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>已完成交付：</strong> 写出结果表、代码版本、记录和说明的位置；尚未完成不要写成已完成。</p>
+<p><strong>负结果与异常：</strong> 包括差异、失败和与原先预期不符的观察。</p>
+<p><strong>本周真正学会的一件事：</strong> 用自己的话说明，例如“为什么 CNM 不能固定扣一个哨兵”。</p>
+<p><strong>AI 帮了什么、我核验了什么：</strong> 区分生成代码、理解代码和验证科学判断。不能仅写“AI 已检查”。</p>
+<p><strong>需要导师作出的决定：</strong> 一至两个清楚的问题；若无则写“无”。</p>
+<p><strong>下阶段最小计划：</strong> 一个能回答具体问题的工作单元，注明是否已经获得范围确认。</p>
+<h2>讨论前的五分钟准备</h2>
+<p>准备不依赖 AI 代答地讲清：问题是什么、对照是什么、一个关键数字怎么算、证据支持什么、什么还不知道。可以查看自己的笔记，不要求背术语。</p>
+<p>如果你认为导师或现有论文的说法不准确，请带着证据直接指出。这不是“拖慢投稿”，而是减少把错误带进论文的风险。</p>
+</section><section id="quiz" aria-label="自检与参考答案"><div class="section-label">自检与参考答案 · <a href="templates/04_%E8%87%AA%E6%A3%80%E9%A2%98%E4%B8%8E%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88.md">原始 Markdown</a></div><h1>自检题与参考答案</h1>
+<p>先不看答案，用自己的话回答。允许暂时不会；把未理解之处记进提问单。这里检查的是推理，不是术语背诵。</p>
+<h2>问题</h2>
+<ol>
+<li>模型的 AP 很高，是否等于“准确率很高”或“模型理解了异常”？AP 在看什么？</li>
+<li>对目标视频做 donor 对照时，改变什么、保持什么？为什么不能连标签一起换成 donor 的标签？</li>
+<li>代码中的 donor 位移 7、19、31 等，是否表示把当前视频分数向后移动这些帧？如果两个视频长度不同，又如何对齐？</li>
+<li>某目标视频自有曲线 AP 为 0.70，8 个 donor 的 AP 均值为 0.62，它的归属效应是多少？TIA 又如何从这些逐视频效应得到？</li>
+<li>假设候选总体 TIA 为 0.10，四个哨兵的总体 TIA 分别为 0.01、0.03、−0.02、0.00，那么 CNM 点估计是多少？计算区间时能否一直扣去第二个哨兵？</li>
+<li>为什么本包既有 150 个视频又有 134 个目标？其余视频是否被从所有分析和 donor 池里删除？为什么 bootstrap 以视频而不是单帧为单位？</li>
+<li>某效应点估计为 −0.01，95% 区间跨过零。能否说“证明没有效应”？反过来，一个正区间能否证明模型理解了真实因果机制？</li>
+<li>你用提供的保存预测和原代码重算出了参考结果。这是否算重新训练成功、新的独立数据确认或独立第三方复现？</li>
+<li>标签长度为 N，原始候选分数长度为 N+1。原实现和拟议网格条件分别生成什么？应该顺便改变候选首帧裁剪、donor 或种子来提高一致性吗？</li>
+<li>追加条件使 CNM 变小，其中一个候选不再通过。你应如何报告？能否只报告另两个候选，或把追加实验写成新的独立确认？</li>
+<li>AI 建议把 <code>max</code> 移到 bootstrap 之前以节省计算，并说结果“差不多”。你如何判断？哪些工作可以交给 AI，哪些责任不能交出去？</li>
+<li>当导师要求“尽快出成果”时，你必须执行所有可能追加的实验吗？什么时候可以建议不追加实验或收窄结论？</li>
+</ol>
+<h2>参考答案</h2>
+<h3>1. AP 不是准确率，也不是理解证明</h3>
+<p>AP（平均精确率）根据分数排序对应的 precision–recall 关系汇总表现，不是选一个阈值后数“判断正确的比例”。它受标签比例、排序及并列分数处理等影响。高 AP 说明分数与本评价标签的排列关系较好；一个简单时间规则也可能在特定数据上得到高 AP，所以不能直接推出模型依赖内容或理解错误。</p>
+<h3>2. 换曲线，目标标签保持不变</h3>
+<p>保持同一目标视频的标签，分别评价自己的曲线和来自其他视频的曲线。donor 提供的是另一条分数曲线，不是另一套正确答案。如果连标签一起换，就变成评价另一段视频，失去“针对这个目标是否具有归属优势”的可比性。该对照也不等于物理世界中的因果干预。</p>
+<h3>3. 视频索引位移不等于时间偏移</h3>
+<p>先按固定哈希规则排列 150 个视频，再在视频列表上循环位移，以为每个目标确定 8 个不同且非自身的 donor。它不是把目标自己的曲线移动若干帧。曲线先作秩百分位变换，再按归一化时间进度插值到目标长度；“第几个视频”和“第几帧”是两回事。</p>
+<h3>4. 先算逐视频差，再对固定目标集合平均</h3>
+<p>该目标的效应为 <code>0.70−0.62=0.08</code>。TIA 是在固定的 134 个 mixed-label 目标上平均这一差值；每个目标使用规定的 8 donor 均值。不能先挑效应为正的视频，也不能把所有帧拼起来的 AP 差当成同一个指标。</p>
+<h3>5. 点估计扣最大哨兵，每次抽样还要重新取最大</h3>
+<p>CNM 点估计为 <code>0.10−max(0.01,0.03,−0.02,0.00)=0.07</code>。但某个哨兵在原样本中最大，不保证在每次视频重采样中也最大。因此每次 bootstrap 都要重算四个哨兵的均值与最大值，再与同次候选值相减；固定扣第二个哨兵会改变区间的统计定义。</p>
+<h3>6. 两个计数属于不同用途</h3>
+<p>150 个视频中，134 个既有正常也有异常标签，符合这次归属审计的目标规则；另外 10 个全正常、6 个全异常不进入该目标均值。普通检测的汇总指标仍使用全部 150 个视频的对齐帧，150 个视频也都保留在 donor 池中。视频内相邻帧并非独立重复样本；这份冻结实现以视频为抽样单位。不能因为帧多就把区间人为算窄。</p>
+<h3>7. 跨零不是“证明为零”，正效应也有主张边界</h3>
+<p>跨零说明在该分析与区间下，没有给出明确的正向效应证据；不等于已经证明效应严格为零，也不自动证明有害。正区间支持的是该数据、该 donor 规则和该对照族下的优势。CNM 即使为正，也没有穷尽所有非内容机制，更不能单独证明语义理解或真实物理因果机制。</p>
+<h3>8. 是保存输入上的原实现重放</h3>
+<p>你核验了现有输入、原实现与结果之间的可追溯性。没有重新训练、没有一份新的独立数据，也没有因为执行者换了一人就自动成为独立第三方验证。这项作者内部重放仍很有价值，但报告名称必须准确。后续独立实现或新数据研究需要另行设计，不能补一个称呼来替代。</p>
+<h3>9. 唯一拟变因素是四哨兵的生成网格</h3>
+<p>原候选始终取 <code>score[1:]</code> 与 N 长度的标签对齐。原实现 A 对每个视频使用 <code>sentinels(N)</code>；拟议 B 先算 <code>sentinels(N+1)</code>，再对每个哨兵数组取 <code>[1:]</code>。目标和 donor 两侧一致应用各自条件。8 donor、候选、标签、种子 24082026、10000 次抽样及其他评价规则均不变。不能为了结果好看顺便调这些项。第二阶段当前只写方案，先等导师确认。</p>
+<h3>10. 全族报告，并考虑修正论文主张</h3>
+<p>保留 A/B 两条件、全部 3 候选和 4 哨兵的结果、区间、判定与异常，解释变化来自哪里。若确认依赖网格约定，应收窄结论或明确局限；不能删去失败候选，也不能事后改阈值使之“通过”。追加分析知道已有结果之后才设计，应标为事后敏感性分析，不能称为新的独立确认。</p>
+<h3>11. AI 的建议必须接受科学定义检验</h3>
+<p>先检查冻结定义和代码：这里“每次抽样重新取最大”是统计量的一部分，移到外面不是纯性能优化。可用小型人工可检验样例说明两个算法何时不同，再查协议；不要未经讨论改实现。AI 可辅助解释代码、写测试、查文献和起草说明；输入/输出核验、科学判断、数据许可与最终结论由研究者承担。未经许可不向云端 AI 上传标签、预测、原始视频或未公开稿件，不分享凭据；允许使用的材料范围先与导师确认。</p>
+<h3>12. 有边界的停止也是科研判断</h3>
+<p>应先考虑问题是否影响主张、证据是否足够、追加是否真的能区分解释及资源成本。可以提交“不追加，修正文档”“先核对协议来源”“当前证据不足，收窄结论”等选择，并说明理由，由导师确认。尽快出成果不等于无限试验或必须得到正结果；清楚知道何时该停、哪些话不能说，是有价值的科研能力。</p>
+<h2>自检结束后</h2>
+<p>请标记每题为“能独立解释 / 看答案后理解 / 仍不理解”，并选出两个你最想讨论的问题。正确背出答案不算完成；能结合本包代码、输入和一条实际结果说明理由，才是下一次讨论的目标。</p>
+</section><section id="rights" aria-label="数据与使用边界"><div class="section-label">数据与使用边界 · <a href="DATA_NOTICE.md">原始 Markdown</a></div><h1>数据、来源与使用边界</h1>
+<p>本包是现有 CIL 研究的内部教学与合作材料，不是公开数据发布包，也不是已经投稿或录用的论文附件。</p>
+<ul>
+<li>标签来源于已使用的 IITB Corridor 测试端点，分数来自本项目封存的三个候选。原论文作者与数据集作者不是同一概念。本包不授予新的数据许可证。</li>
+<li>仅在导师确认接收方具有相应研究访问/共享权限后，向该合作者提供本包。未获许可者应先解决访问权限，不能把“教学”当作任意再分发授权。</li>
+<li>不上传 labels、预测 ZIP、未发表稿件、实验明细到公共仓库、网盘公开链接或云端 AI。AI 可协助解释公开概念、分析脱敏报错、实现玩具代码；涉及研究资料时先确认允许的工具与范围。</li>
+<li>不含原始视频、加密档案密码、服务器密钥、模型权重或无关项目材料；首轮重算不需要这些内容。</li>
+<li>inputs、reference 和 evaluator_original.py 是只读参考；新的分析写入 outputs 或单独的学生工作目录，不覆盖历史记录，不重新打开任何所谓“一次性标签库”。</li>
+<li>原始研究的“一次打开标签”和“独立确认”字段仅描述历史来源。学生已知结果后的运行不能获得同等证据身份。</li>
+<li>图 cil_protocol.png 中的曲线是数学示意；cil_ownership_control.png 是合成视频数据集 Pistachio 上的真实汇总实验结果，不是 IITB 的单个视频。</li>
+<li>PDF 和复核报告为随包附带的稿件快照；其中作者待办、历史声明及投稿状态不代表本包已补全或已提交论文。追加任务是研究提案，不是预先保证存在正结果。</li>
+</ul>
+<h2>来源定位</h2>
+<p>原评估实现：项目 rLEM-VAD/scripts/evaluate_iitb_corridor_prospective_cil_v1.py。</p>
+<p>IITB 封存端点：logs/cil_acceptance_lift_v2_20260824/cycles/CYCLE-B01_iitb-corridor-prospective-cil/。</p>
+<p>论文快照：paper/cil_tmm_v1/。</p>
+<p>官方数据来源链接保留在 inputs/SCIENTIFIC_CONTRACT_V1.json 的 official_page/paper 字段。原协议是来源记录，不是新的共享许可证。package_manifest.json 为随包文件身份与来源清单，哈希只能核对完整性，不能证明公开时间戳或数据权利。</p>
+</section></main></div><footer class="footer">离线阅读 · 无外部字体、跟踪脚本或自动网络请求 · 运行数据约 7 MB</footer></body></html>

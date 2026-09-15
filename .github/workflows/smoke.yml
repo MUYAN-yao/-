@@ -1,0 +1,13 @@
+name: Smoke
+
+on:
+  push:
+    paths:
+      - ".github/workflows/smoke.yml"
+  workflow_dispatch:
+
+jobs:
+  ok:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ok

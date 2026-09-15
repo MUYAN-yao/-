@@ -11,7 +11,6 @@ permissions:
 
 jobs:
   replay:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -43,8 +42,6 @@ jobs:
           exit 0
 
       - name: Write aggregate experiment record and weekly report
-        env:
-          RUN_DATE: ${{ github.run_started_at }}
         run: |
           python - <<'PY'
           from __future__ import annotations
@@ -69,7 +66,7 @@ jobs:
           candidates = result["candidate_results"]
           ordinary = result["ordinary_detection_metrics"]
           sentinels = result["sentinel_results"]
-          date = os.environ.get("RUN_DATE", "")[:10] or dt.date.today().isoformat()
+          date = dt.date.today().isoformat()
           replay_status = "原实现重放" if os.environ.get("REPLAY_EXIT_CODE") == "0" else "原实现重放（存在差异或非零退出）"
           report_dir = root / "reports"
           report_dir.mkdir(exist_ok=True)

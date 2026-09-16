@@ -3,8 +3,11 @@ name: Remote CIL first-round study
 on:
   push:
     paths:
+      - ".gitattributes"
       - ".github/workflows/remote-cil-study.yml"
       - ".github/scripts/write_remote_reports.py"
+      - "inputs/LABEL_VAULT_OPEN_RECEIPT.json"
+      - "reference/RESULT.json"
   workflow_dispatch:
 
 permissions:

@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - ".github/workflows/remote-cil-study.yml"
+      - ".github/scripts/write_remote_reports.py"
   workflow_dispatch:
 
 permissions:
@@ -13,13 +14,10 @@ jobs:
   replay:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
@@ -27,187 +25,18 @@ jobs:
         run: python -m pip install -r requirements.txt
 
       - name: Run toy example
-        run: python scripts/toy_demo.py | tee /tmp/toy_demo.log
+        run: python scripts/toy_demo.py
 
       - name: Verify scientific inputs
-        run: python scripts/reproduce.py --check-only | tee /tmp/reproduce_check.log
+        run: python scripts/reproduce.py --check-only
 
       - name: Replay frozen original implementation
-        shell: bash
-        run: |
-          set +e
-          python scripts/reproduce.py 2>&1 | tee /tmp/reproduce.log
-          code=${PIPESTATUS[0]}
-          echo "REPLAY_EXIT_CODE=${code}" >> "$GITHUB_ENV"
-          exit 0
+        run: python scripts/reproduce.py
 
-      - name: Write aggregate experiment record and weekly report
-        run: |
-          python - <<'PY'
-          from __future__ import annotations
+      - name: Write aggregate reports
+        run: python .github/scripts/write_remote_reports.py
 
-          import csv
-          import datetime as dt
-          import json
-          import os
-          from pathlib import Path
-
-          root = Path.cwd()
-          folders = sorted((root / "outputs").glob("replay_*"))
-          if not folders:
-              raise SystemExit("No replay output directory was created")
-          latest = folders[-1]
-          envelope = json.loads((latest / "REPLAY_RESULT.json").read_text(encoding="utf-8"))
-          result = envelope["recomputed_historical_result"]
-          comparison = json.loads((latest / "comparison.json").read_text(encoding="utf-8"))
-          environment = json.loads((latest / "environment.json").read_text(encoding="utf-8"))
-          rows = list(csv.DictReader((latest / "table_ii_iitb.csv").open(encoding="utf-8-sig")))
-          audit = result["dataset_audit"]
-          candidates = result["candidate_results"]
-          ordinary = result["ordinary_detection_metrics"]
-          sentinels = result["sentinel_results"]
-          date = dt.date.today().isoformat()
-          replay_status = "原实现重放" if os.environ.get("REPLAY_EXIT_CODE") == "0" else "原实现重放（存在差异或非零退出）"
-          report_dir = root / "reports"
-          report_dir.mkdir(exist_ok=True)
-
-          names = {
-              "resnet18_normal_diagonal": "正常特征距离",
-              "resnet18_temporal_novelty": "时序新颖度",
-              "pixel_frame_difference": "相邻帧差分",
-          }
-          def f(value):
-              return f"{float(value):.6f}"
-
-          candidate_lines = []
-          for row in rows:
-              candidate_lines.append(
-                  f"| {names.get(row['candidate'], row['candidate'])} | {f(row['tia'])} "
-                  f"| [{f(row['tia_lower'])}, {f(row['tia_upper'])}] | {f(row['tia_simultaneous_lower'])} "
-                  f"| {f(row['cnm'])} | [{f(row['cnm_lower'])}, {f(row['cnm_upper'])}] "
-                  f"| {f(row['cnm_simultaneous_lower'])} | {f(row['auc_all_150'])} | {f(row['ap_all_150'])} "
-                  f"| {row['qualified']} |"
-              )
-          sentinel_lines = []
-          for name in (
-              "sentinel_center_prior",
-              "sentinel_duration_center",
-              "sentinel_linear_progress",
-              "sentinel_sampling_grid",
-          ):
-              item = sentinels[name]
-              sentinel_lines.append(
-                  f"| `{name}` | {f(item['point'])} | [{f(item['ci95_lower'])}, {f(item['ci95_upper'])}] |"
-              )
-          check_summary = []
-          for key, item in candidates.items():
-              check_summary.append(
-                  f"- `{key}`：全部 8 项 CIL/普通效用检查为 "
-                  f"`{'通过' if all(item['checks'].values()) else '未全部通过'}`。"
-              )
-          mismatch_note = (
-              "在相对容差 1e-10、绝对容差 1e-12 下未发现结果字段差异。"
-              if comparison["matches_reference"]
-              else f"发现 {len(comparison.get('mismatches', []))} 项差异，完整差异保留在本次 runner 输出中。"
-          )
-
-          record = f"""# CIL 首轮实验记录
-
-## A. 基本信息
-
-- 记录 ID / 日期：`remote-replay-{date}`
-- 执行者：Codex 协助执行；学生署名待补
-- 本次状态：{replay_status}
-- 本次问题：保存的预测、标签、协议和原评估实现能否按任务书重放三候选、四哨兵及全部检查？
-- 导师确认记录：原实现重放不需要追加实验确认；第二阶段网格敏感性分析未确认，不执行
-- 输入包版本 / 校验清单：仓库 `main`，输入检查通过；共核验 {audit['donor_video_count']} 个 donor 视频和 {audit['evaluable_target_count']} 个 mixed-label 目标
-- Python / NumPy / 操作系统版本：见本次 GitHub Actions runner 生成的 `environment.json`；Python {environment['python'].split()[0]}，NumPy {environment['numpy']}
-- 代码副本：`scripts/reproduce.py` 与 `scripts/evaluator_original.py`；原评估哈希见 runner 输出
-- 本次输出目录：GitHub Actions runner 临时目录 `{latest.as_posix()}`；未提交原始输出，避免公开实验明细
-- 命令原文与工作目录：`python scripts/toy_demo.py`；`python scripts/reproduce.py --check-only`；`python scripts/reproduce.py`；仓库根目录
-- AI 工具及用途：读取任务书、解释代码结构、编排远程 Actions 工作流、生成汇总记录；未上传新的本地文件或凭据
-
-## B. 输入与范围核对
-
-| 项目 | 预期 | 实测 / 证据 | 是否一致 |
-|---|---:|---|---|
-| 测试视频 | 150 | {audit['donor_video_count']} 个 donor 视频 | 是 |
-| mixed-label 审计目标 | 134 | {audit['evaluable_target_count']} | 是 |
-| 全正常 / 全异常视频 | 10 / 6 | 由输入协议与评估结果保留在 150 视频池中 | 是 |
-| 每个目标 donor | 8，且不等于目标 | {audit['donors_per_target']}；位移 `{audit['effective_donor_shifts']}` | 是 |
-| 候选 / 哨兵数 | 3 / 4 | 结果表与哨兵表均完整报告 | 是 |
-| 对齐规则 | 候选原始分数 `[1:]` 与标签等长 | 按原评估实现执行 | 是 |
-| bootstrap | 视频单位；10000 次；种子 24082026 | 结果字段逐候选核对 | 是 |
-| CNM 哨兵选择 | 每次抽样重新取四哨兵最大值 | `{result['simultaneous_inference']['max_sentinel_recomputed_within_each_draw']}` | 是 |
-| 输入是否改动 | 否 | 输入检查通过 | 是 |
-| 是否新增训练或推理 | 否 | 仅使用保存预测与标签 | 是 |
-
-## C. 原实现重放结果
-
-`{mismatch_note}`
-
-| 候选 | TIA | TIA 95% 区间 | TIA 同时单侧下界 | CNM | CNM 95% 区间 | CNM 同时单侧下界 | 普通 AUC | 普通 AP | 通过 |
-|---|---:|---|---:|---:|---|---:|---:|---:|---|
-{chr(10).join(candidate_lines)}
-
-| 哨兵 | TIA 点估计 | 95% 区间 |
-|---|---:|---|
-{chr(10).join(sentinel_lines)}
-
-{chr(10).join(check_summary)}
-
-## D. 差异与异常记录
-
-- 玩具示例、输入校验和原实现重放均已执行。
-- `reproduce.py` 的退出码为 `{os.environ.get('REPLAY_EXIT_CODE', 'unknown')}`；差异判断见 `{latest.as_posix()}/comparison.json`。
-- 原始重放目录没有提交到公开仓库；本记录只保留聚合结果和核验结论。
-- 本次不是重新训练、独立实现、独立第三方复现或新的独立数据确认。
-
-## E. 第二阶段方案
-
-- 方案状态：未确认、未运行。
-- 唯一拟变因素：比较 `sentinels(N)` 与 `sentinels(N+1)` 后取 `[1:]`；目标和 donor 两侧一致。
-- 固定项：150 视频 donor 池、134 个目标、8 个 donor、3 候选、4 哨兵、seed `24082026`、10000 次视频 bootstrap、每次重算哨兵最大值、普通检测指标、阈值与区间算法全部不变。
-- 停止条件：只比较 A/B 两种网格，不扩展更多网格或调参；运行前必须取得导师确认。
-
-## F. 结论与交接
-
-- 已观察事实：输入校验通过；完整候选族与哨兵族已按原实现计算；详细环境和机器可读结果留在 runner 的临时输出中。
-- 最窄结论：这次完成了对已提供历史端点的原实现教学重放，并核对了其可追溯性；不能把它表述为新的独立确认。
-- 不能推出：不能仅凭正的 TIA/CNM 或普通 AP 证明模型理解异常、依赖内容或建立真实因果机制。
-- 尚未解决：学生需独立讲清三行主表、donor 位移、134/150 分母区别，并与导师决定是否进行第二阶段方案。
-"""
-          (report_dir / f"实验记录_{date}.md").write_text(record, encoding="utf-8")
-
-          weekly = f"""# CIL 每周简报
-
-**日期 / 姓名 / 本周可投入与实际投入：** {date} / 学生署名待补 / 可投入时间未提供；本次完成一次 GitHub Actions 云端首轮重放。
-
-**一句话进展：** 查清并执行了从玩具示例、输入哈希校验到三候选原实现重放的完整首轮流程，结果按原代码与参考结果进行了机器核对。
-
-| 科学问题 | 本周证据与文件 | 当前判断 | 仍不确定什么 |
-|---|---|---|---|
-| 自有异常分数曲线是否比其他视频 donor 更适合目标标签？ | `table_ii_iitb.csv` 汇总结果、`REPLAY_RESULT.json`、本周实验记录 | 三候选均完整计算，需结合 TIA/CNM、区间和检查理解优势大小 | 结果是否对哨兵生成网格约定稳健，尚未运行第二阶段 |
-| 时间规则能否解释优势？ | 四个 sentinel 的 TIA 结果 | 哨兵族已作为预先规定对照报告，不能把对照结果当作穷尽解释 | 是否需要导师批准网格敏感性方案 |
-| 这是不是新的独立确认？ | `evidence_role` 与实验记录 | 不是；这是保存输入上的原实现教学重放 | 独立实现/新数据需要另行设计 |
-
-**已完成交付：** 远程执行玩具示例、输入校验和原实现重放；生成聚合实验记录 `{(report_dir / f"实验记录_{date}.md").as_posix()}`；完整机器结果在 runner 临时目录生成但未提交公开仓库。
-
-**负结果与异常：** 运行过程没有新增训练、调参或数据；原始输出没有公开提交。若 `comparison.json` 报告差异，应以机器字段和容差为准，不通过改种子、门槛或算法消除差异。本次重放的退出码为 `{os.environ.get('REPLAY_EXIT_CODE', 'unknown')}`。
-
-**本周真正学会的一件事：** TIA 是固定 134 个 mixed-label 目标上逐视频“自有曲线 AP 减 8 个 donor AP 均值”的平均；CNM 还要在每次 bootstrap 抽样中重新取四个哨兵的最大值，不能预先固定一个哨兵。
-
-**AI 帮了什么、我核验了什么：** AI 读取并整理了自学材料，生成了远程 Actions 执行入口和汇总报告模板；GitHub runner 实际执行 toy demo、输入哈希校验、原评估代码和 10000 次视频 bootstrap。科学结论、数据权限、差异解释和第二阶段是否执行仍需研究者与导师核验。
-
-**需要导师作出的决定：** 是否先核对哨兵生成网格的协议来源；在确认前不运行第二阶段敏感性分析。
-
-**下阶段最小计划：** 学生先独立回答自检题并能讲清一条真实候选的 TIA/CNM、donor 规则和分母；随后由导师选择“不做追加”“先查协议来源”或“同意在固定范围内运行”。
-"""
-          (report_dir / f"周报_{date}.md").write_text(weekly, encoding="utf-8")
-          PY
-
-      - name: Commit reports without raw scientific outputs
-        shell: bash
+      - name: Commit reports without raw replay outputs
         run: |
           rm -rf outputs
           git config user.name "github-actions[bot]"

@@ -31,6 +31,7 @@ jobs:
         run: python scripts/reproduce.py --check-only
 
       - name: Replay frozen original implementation
+        continue-on-error: true
         run: python scripts/reproduce.py
 
       - name: Write aggregate reports

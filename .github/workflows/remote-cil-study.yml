@@ -15,10 +15,16 @@ permissions:
 
 jobs:
   replay:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+
+      - name: Restore checksum-covered checkout bytes
+        shell: pwsh
+        run: |
+          git config core.autocrlf false
+          git reset --hard HEAD
 
       - uses: actions/setup-python@v5
         with:
@@ -27,34 +33,30 @@ jobs:
       - name: Install fixed dependency
         id: install
         continue-on-error: true
-        shell: bash
+        shell: pwsh
         run: |
-          set -o pipefail
-          python -m pip install -r requirements.txt 2>&1 | tee /tmp/install.log
+          python -m pip install -r requirements.txt
 
       - name: Run toy example
         id: toy
         continue-on-error: true
-        shell: bash
+        shell: pwsh
         run: |
-          set -o pipefail
-          python scripts/toy_demo.py 2>&1 | tee /tmp/toy.log
+          python scripts/toy_demo.py
 
       - name: Verify scientific inputs
         id: verify
         continue-on-error: true
-        shell: bash
+        shell: pwsh
         run: |
-          set -o pipefail
-          python scripts/reproduce.py --check-only 2>&1 | tee /tmp/verify.log
+          python scripts/reproduce.py --check-only
 
       - name: Replay frozen original implementation
         id: replay
         continue-on-error: true
-        shell: bash
+        shell: pwsh
         run: |
-          set -o pipefail
-          python scripts/reproduce.py 2>&1 | tee /tmp/replay.log
+          python scripts/reproduce.py
 
       - name: Write aggregate reports
         if: always()
@@ -67,10 +69,14 @@ jobs:
 
       - name: Commit reports without raw replay outputs
         if: always()
+        shell: pwsh
         run: |
-          rm -rf outputs
+          Remove-Item -LiteralPath outputs -Recurse -Force -ErrorAction SilentlyContinue
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add reports
-          git diff --cached --quiet || git commit -m "Add first-round remote replay report"
-          git push
+          git diff --cached --quiet
+          if ($LASTEXITCODE -ne 0) {
+            git commit -m "Add first-round remote replay report"
+            git push
+          }

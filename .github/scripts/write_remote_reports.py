@@ -27,15 +27,101 @@ def fmt(value: object) -> str:
     return f"{float(value):.6f}"
 
 
-def latest_replay_dir() -> Path:
+def latest_replay_dir() -> Path | None:
     folders = sorted((ROOT / "outputs").glob("replay_*"))
-    if not folders:
-        raise SystemExit("No replay output directory was created.")
-    return folders[-1]
+    return folders[-1] if folders else None
+
+
+def write_incomplete_reports(date: str, outcomes: dict[str, str]) -> None:
+    REPORT_DIR.mkdir(exist_ok=True)
+    rows = "\n".join(
+        f"| {label} | `{outcomes[key]}` |"
+        for key, label in (
+            ("install", "固定依赖安装"),
+            ("toy", "玩具示例"),
+            ("verify", "输入哈希校验"),
+            ("replay", "原实现重放"),
+        )
+    )
+    failed = [label for key, label in (
+        ("install", "固定依赖安装"),
+        ("toy", "玩具示例"),
+        ("verify", "输入哈希校验"),
+        ("replay", "原实现重放"),
+    ) if outcomes[key] != "success"]
+    stopped = "、".join(failed) if failed else "未识别到失败步骤"
+
+    record = f"""# CIL 首轮实验记录
+
+## A. 基本信息
+
+- 记录 ID / 日期：`remote-replay-{date}`
+- 执行者：Codex 协助执行；学生署名待补
+- 本次状态：失败 / 中断后保留记录
+- 本次问题：保存预测、标签、冻结协议和原评估实现能否按任务书完成首轮重放？
+- 导师确认记录：第二阶段未确认，未运行。
+- 执行位置：GitHub Actions 云端 runner；不使用本地项目工作目录执行。
+
+## B. 执行状态
+
+| 步骤 | GitHub Actions 状态 |
+|---|---|
+{rows}
+
+本次未生成 `outputs/replay_*` 目录，因此没有可用于报告的完整三候选结果、区间或差异 JSON。失败步骤为：{stopped}。完整错误文本只保留在 GitHub Actions 运行日志中，未复制到公开仓库。
+
+## C. 差异与异常记录
+
+- 已按任务书顺序请求执行：固定依赖安装、玩具示例、输入校验、原实现重放。
+- 未生成可审阅的重放输出时，不把参考结果抄写为本次运行结果。
+- 未新增训练、调参、模型、数据或第二阶段网格敏感性分析。
+- 下一步：根据 GitHub Actions 日志定位失败步骤；若为输入哈希/标签问题，保留证据并请导师决定，不自行修改科学输入或参数。
+
+## D. 结论与交接
+
+- 已观察到的事实：远程 runner 启动并执行了首轮入口，但未生成完整重放输出。
+- 由事实支持的最窄结论：本次尚不能声称原实现重放与参考结果一致。
+- 不能从中推出的结论：不能声称完成独立确认、完成原实现重放或得到三候选新结果。
+- 本次是否需要导师行动：需要；请先确认失败日志对应的是环境、输入完整性还是协议/实现差异。
+"""
+    weekly = f"""# CIL 每周简报
+
+**日期 / 姓名 / 本周可投入与实际投入：** {date} / 学生署名待补 / 可投入时间未提供；本次在 GitHub Actions 云端启动首轮流程。
+
+**一句话进展：** 已把首轮运行迁到 GitHub Actions，并按文档顺序启动依赖安装、玩具示例、输入校验和原实现重放；本轮未生成完整重放输出，异常已留档。
+
+| 科学问题 | 本周证据与文件 | 当前判断 | 仍不确定什么 |
+|---|---|---|---|
+| 保存输入能否原样重放？ | GitHub Actions 运行日志、`reports/实验记录_{date}.md` | 尚未得到完整输出，不能判断一致性 | 失败发生在环境、输入完整性还是原实现执行阶段 |
+| 第二阶段是否可执行？ | 任务书与实验记录 | 未确认、未运行 | 导师是否先核对协议/输入来源 |
+
+**已完成交付：** 已创建 GitHub Actions 云端首轮入口；生成本周实验记录与周报；未将 runner 的原始输出或逐视频明细提交到公开仓库。
+
+**负结果与异常：** {stopped} 状态不是 `success`；未生成 `outputs/replay_*`，因此没有将参考数值当成本次结果报告。
+
+**本周真正学会的一件事：** 当输入校验或重放中断时，应保留命令、环境与错误证据，并停止在既定范围内；不能通过改种子、阈值或删样本使结果“通过”。
+
+**AI 帮了什么、我核验了什么：** AI 搭建了远程执行和结构化记录；GitHub runner 实际启动了各步骤。结果、输入权限和科学判断仍需学生与导师核验。
+
+**需要导师作出的决定：** 请确认是否先以 Actions 日志定位输入/环境问题；在此之前不运行第二阶段敏感性分析。
+
+**下阶段最小计划：** 仅定位首轮失败步骤并重新运行原实现入口；不增加分析条件。
+"""
+    (REPORT_DIR / f"实验记录_{date}.md").write_text(record, encoding="utf-8")
+    (REPORT_DIR / f"周报_{date}.md").write_text(weekly, encoding="utf-8")
 
 
 def main() -> None:
+    outcomes = {
+        key: __import__("os").environ.get(f"{key.upper()}_OUTCOME", "unknown")
+        for key in ("install", "toy", "verify", "replay")
+    }
     folder = latest_replay_dir()
+    date = dt.date.today().isoformat()
+    if folder is None:
+        write_incomplete_reports(date, outcomes)
+        return
+
     envelope = json.loads((folder / "REPLAY_RESULT.json").read_text(encoding="utf-8"))
     result = envelope["recomputed_historical_result"]
     comparison = json.loads((folder / "comparison.json").read_text(encoding="utf-8"))
@@ -46,7 +132,6 @@ def main() -> None:
     candidates = result["candidate_results"]
     ordinary = result["ordinary_detection_metrics"]
     sentinels = result["sentinel_results"]
-    date = dt.date.today().isoformat()
     REPORT_DIR.mkdir(exist_ok=True)
 
     candidate_lines = []

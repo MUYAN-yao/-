@@ -1,0 +1,3 @@
+# This receipt's recorded checksum covers its original CRLF bytes.
+inputs/LABEL_VAULT_OPEN_RECEIPT.json -text
+reference/RESULT.json -text
